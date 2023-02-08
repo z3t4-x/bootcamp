@@ -6,14 +6,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-@Entity(name="TRANSACCION")
+@Entity
+@Table(name="TRANSACCION")
 public class Transaccion  {
 
 	/**id de transaccion*/
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idTransaccion;
+	private Long idTransaccion;
 
 	/***variable que identifica el nombre de la transaccion // deposito, retiro, transferecias bancarias, pagos de crédito, pagos de tarjeta de crédito **/
 	private String dsNombre;
