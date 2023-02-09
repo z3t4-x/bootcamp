@@ -17,5 +17,5 @@ public interface IClienteService {
 	Cliente buscarPorId(Integer id) throws Exception;
 
 
-	//void eliminar(Integer id) throws Exception;
+
 }

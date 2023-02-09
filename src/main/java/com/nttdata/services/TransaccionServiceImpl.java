@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 import com.nttdata.dao.TransaccionDAO;
-import com.nttdata.domain.Transaccion;
+import com.nttdata.domain.Operaciones;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -22,7 +22,7 @@ public class TransaccionServiceImpl implements ITransaccionService{
 	 */
 	@Override
 	@Transactional
-	public Transaccion registrar(Transaccion transaccion) throws Exception {
+	public Operaciones registrar(Operaciones transaccion) throws Exception {
 
 		if(Objects.nonNull(transaccion)) {
 
@@ -39,7 +39,7 @@ public class TransaccionServiceImpl implements ITransaccionService{
 	 *
 	 */
 	@Override
-	public Transaccion modificar(Transaccion transaccion) throws Exception {
+	public Operaciones modificar(Operaciones transaccion) throws Exception {
 
 		if(Objects.nonNull(transaccion)) {
 
@@ -56,7 +56,7 @@ public class TransaccionServiceImpl implements ITransaccionService{
 	 *
 	 */
 	@Override
-	public List<Transaccion> listarTransaccion() throws Exception {
+	public List<Operaciones> listarTransaccion() throws Exception {
 
 		return this.dao.findAll().list();
 	}
@@ -68,7 +68,7 @@ public class TransaccionServiceImpl implements ITransaccionService{
 	@Override
 	public void eliminar(Integer id) throws Exception {
 
-		Transaccion transaccion = new Transaccion();
+		Operaciones transaccion = new Operaciones();
 
 		if(Objects.nonNull(id)) {
 			LocalDateTime fcBaja =  LocalDateTime.now();
@@ -83,7 +83,7 @@ public class TransaccionServiceImpl implements ITransaccionService{
 	 *
 	 */
 	@Override
-	public Transaccion buscarPorId(Long id) throws Exception {
+	public Operaciones buscarPorId(Long id) throws Exception {
 
 		return this.dao.findById(id);
 	}

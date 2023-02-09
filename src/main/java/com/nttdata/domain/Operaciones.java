@@ -10,18 +10,18 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="TRANSACCION")
-public class Transaccion  {
+public class Operaciones  {
 
 	/**id de transaccion*/
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idTransaccion;
+	private Long idOperacion;
 
 	/***variable que identifica el nombre de la transaccion // deposito, retiro, transferecias bancarias, pagos de crédito, pagos de tarjeta de crédito **/
 	private String dsNombre;
 
 	/***variable que identifica la fecha de transaccion**/
-	private LocalDateTime fcTransaccion;
+	private LocalDateTime fcOperacion;
 
 	/***variable que identifica la fecha de alta de registro**/
 	private LocalDateTime fcAltaFila;
@@ -40,44 +40,90 @@ public class Transaccion  {
 	//**********************************
 	//***********************************
 
+
+
+	/**
+	 * @return the idOperacion
+	 */
+	public Long getIdOperacion() {
+		return this.idOperacion;
+	}
+
+	/**
+	 * @return the dsNombre
+	 */
 	public String getDsNombre() {
 		return this.dsNombre;
 	}
 
+	/**
+	 * @param dsNombre the dsNombre to set
+	 */
 	public void setDsNombre(String dsNombre) {
 		this.dsNombre = dsNombre;
 	}
 
-	public LocalDateTime getFcTransaccion() {
-		return this.fcTransaccion;
-	}
-
-	public void setFcTransaccion(LocalDateTime fcTransaccion) {
-		this.fcTransaccion = fcTransaccion;
-	}
-
+	/**
+	 * @return the fcAltaFila
+	 */
 	public LocalDateTime getFcAltaFila() {
 		return this.fcAltaFila;
 	}
 
+	/**
+	 * @param fcAltaFila the fcAltaFila to set
+	 */
 	public void setFcAltaFila(LocalDateTime fcAltaFila) {
 		this.fcAltaFila = fcAltaFila;
 	}
 
+	/**
+	 * @return the fcBajaFila
+	 */
 	public LocalDateTime getFcBajaFila() {
 		return this.fcBajaFila;
 	}
 
+	/**
+	 * @param fcBajaFila the fcBajaFila to set
+	 */
 	public void setFcBajaFila(LocalDateTime fcBajaFila) {
 		this.fcBajaFila = fcBajaFila;
 	}
 
+	/**
+	 * @return the fcModifFila
+	 */
 	public LocalDateTime getFcModifFila() {
 		return this.fcModifFila;
 	}
 
+	/**
+	 * @param fcModifFila the fcModifFila to set
+	 */
 	public void setFcModifFila(LocalDateTime fcModifFila) {
 		this.fcModifFila = fcModifFila;
+	}
+
+	/**
+	 * @param idOperacion the idOperacion to set
+	 */
+	public void setIdOperacion(Long idOperacion) {
+		this.idOperacion = idOperacion;
+	}
+
+	/**
+	 * @return the fcOperacion
+	 */
+	public LocalDateTime getFcOperacion() {
+		return this.fcOperacion;
+	}
+
+	/**
+	 * @param fcOperacion the fcOperacion to set
+	 */
+	public void setFcOperacion(LocalDateTime fcOperacion) {
+		this.fcOperacion = fcOperacion;
 	}
 
 

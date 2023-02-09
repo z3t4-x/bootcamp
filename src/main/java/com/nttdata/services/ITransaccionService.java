@@ -2,7 +2,7 @@ package com.nttdata.services;
 
 import java.util.List;
 
-import com.nttdata.domain.Transaccion;
+import com.nttdata.domain.Operaciones;
 
 
 
@@ -14,7 +14,7 @@ public interface ITransaccionService {
 	 * @return
 	 * @throws Exception
 	 */
-	Transaccion registrar(Transaccion transaccion) throws Exception;
+	Operaciones registrar(Operaciones transaccion) throws Exception;
 
 	/**
 	 * método para modificar
@@ -22,13 +22,13 @@ public interface ITransaccionService {
 	 * @return
 	 * @throws Exception
 	 */
-	Transaccion modificar(Transaccion transaccion) throws Exception;
+	Operaciones modificar(Operaciones transaccion) throws Exception;
 	/**
 	 * método para listar
 	 * @return
 	 * @throws Exception
 	 */
-	List<Transaccion> listarTransaccion() throws Exception;
+	List<Operaciones> listarTransaccion() throws Exception;
 
 	/**
 	 * método para buscar por id
@@ -36,7 +36,7 @@ public interface ITransaccionService {
 	 * @return
 	 * @throws Exception
 	 */
-	Transaccion buscarPorId(Long id) throws Exception;
+	Operaciones buscarPorId(Long id) throws Exception;
 
 	/**
 	 * método para eliminar de forma lógica
