@@ -6,23 +6,23 @@ import com.nttdata.domain.Operaciones;
 
 
 
-public interface ITransaccionService {
+public interface IOperacionesService {
 
 	/**
 	 * método para registrar una nueva transaccion
 	 * @param transaccion
-	 * @return
+	 *
 	 * @throws Exception
 	 */
-	Operaciones registrar(Operaciones transaccion) throws Exception;
+	public void registrar(Operaciones transaccion) throws Exception;
 
 	/**
 	 * método para modificar
 	 * @param transaccion
-	 * @return
+	 *
 	 * @throws Exception
 	 */
-	Operaciones modificar(Operaciones transaccion) throws Exception;
+	public void  modificar(Operaciones transaccion) throws Exception;
 	/**
 	 * método para listar
 	 * @return

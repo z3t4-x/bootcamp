@@ -4,7 +4,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
-import com.nttdata.dao.TransaccionDAO;
+import org.hibernate.service.spi.ServiceException;
+
+import com.nttdata.dao.OperacionesDAO;
 import com.nttdata.domain.Operaciones;
 
 import jakarta.enterprise.context.ApplicationScoped;
@@ -12,17 +14,17 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 
 @ApplicationScoped
-public class TransaccionServiceImpl implements ITransaccionService{
+public class OperacionesServiceImpl implements IOperacionesService{
 
 
 	@Inject
-	private TransaccionDAO dao;
+	private OperacionesDAO dao;
 	/**
 	 *
 	 */
 	@Override
 	@Transactional
-	public Operaciones registrar(Operaciones transaccion) throws Exception {
+	public void registrar(Operaciones transaccion) throws Exception {
 
 		if(Objects.nonNull(transaccion)) {
 
@@ -33,24 +35,23 @@ public class TransaccionServiceImpl implements ITransaccionService{
 
 		}
 
-		return transaccion;
 	}
 	/**
 	 *
 	 */
 	@Override
-	public Operaciones modificar(Operaciones transaccion) throws Exception {
+	public void modificar(Operaciones operaciones) throws Exception {
 
-		if(Objects.nonNull(transaccion)) {
-
-			LocalDateTime fcActual = LocalDateTime.now();
-
-			transaccion.setFcModifFila(fcActual);
-			this.dao.persist(transaccion);
-
+		if (Objects.isNull(operaciones.getIdOperacion())) {
+			throw new ServiceException("Error al encontrar el id");
 		}
 
-		return transaccion;
+		LocalDateTime fcActual = LocalDateTime.now();
+
+		operaciones.setFcModifFila(fcActual);
+		this.dao.persist(operaciones);
+
+
 	}
 	/**
 	 *

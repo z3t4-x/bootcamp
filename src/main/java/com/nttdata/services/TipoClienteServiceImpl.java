@@ -1,9 +1,6 @@
 package com.nttdata.services;
 
 import java.util.List;
-import java.util.Objects;
-
-import javax.naming.directory.InvalidAttributesException;
 
 import com.nttdata.dao.TipoClienteDAO;
 import com.nttdata.domain.TipoCliente;
@@ -18,32 +15,22 @@ public class TipoClienteServiceImpl implements ITipoClienteService{
 	@Inject
 	private TipoClienteDAO dao;
 
-
+	/**
+	 *
+	 */
 	@Override
-	public TipoCliente registrar(TipoCliente tipoCliente) throws Exception {
-		if (tipoCliente.getIdTipoCliente() != null) {
-			throw new InvalidAttributesException("Error");
-		}
-		return null;
-		//	return this.dao.persist(tipoCliente);
+	public void registrar(TipoCliente tipoCliente) throws Exception {
+		this.dao.persist(tipoCliente);
+
 	}
 	/**
 	 *
 	 */
 	@Override
-	public TipoCliente modificar(TipoCliente tipoCliente) throws Exception {
+	public void modificar(TipoCliente tipoCliente) throws Exception {
 
-		TipoCliente tpcliente = new  TipoCliente();
-		if(Objects.nonNull(tipoCliente.getIdTipoCliente() )|| Objects.nonNull(tipoCliente.getEmpresa())){
+		this.dao.persist(tipoCliente);
 
-			tpcliente.setCliente(tipoCliente.getCliente());
-			tpcliente.setEmpresa(tipoCliente.getEmpresa());
-
-			this.dao.persist(tpcliente);
-		}
-
-
-		return tpcliente;
 	}
 	/**
 	 *

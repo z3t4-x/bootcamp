@@ -9,13 +9,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="TRANSACCION")
+@Table(name="OPERACIONES")
 public class Operaciones  {
 
 	/**id de transaccion*/
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idOperacion;
+	private Integer idOperacion;
 
 	/***variable que identifica el nombre de la transaccion // deposito, retiro, transferecias bancarias, pagos de crédito, pagos de tarjeta de crédito **/
 	private String dsNombre;
@@ -42,18 +42,26 @@ public class Operaciones  {
 
 
 
-	/**
-	 * @return the idOperacion
-	 */
-	public Long getIdOperacion() {
-		return this.idOperacion;
-	}
 
 	/**
 	 * @return the dsNombre
 	 */
 	public String getDsNombre() {
 		return this.dsNombre;
+	}
+
+	/**
+	 * @return the idOperacion
+	 */
+	public Integer getIdOperacion() {
+		return this.idOperacion;
+	}
+
+	/**
+	 * @param idOperacion the idOperacion to set
+	 */
+	public void setIdOperacion(Integer idOperacion) {
+		this.idOperacion = idOperacion;
 	}
 
 	/**
@@ -105,12 +113,7 @@ public class Operaciones  {
 		this.fcModifFila = fcModifFila;
 	}
 
-	/**
-	 * @param idOperacion the idOperacion to set
-	 */
-	public void setIdOperacion(Long idOperacion) {
-		this.idOperacion = idOperacion;
-	}
+
 
 	/**
 	 * @return the fcOperacion

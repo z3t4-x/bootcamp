@@ -14,25 +14,32 @@ public class ClienteServiceImpl implements IClienteService{
 
 	@Inject
 	private ClienteDAO dao;
-
+	/**
+	 *
+	 */
 	@Override
-	public Cliente registrar(Cliente cliente) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public void registrar(Cliente cliente) throws Exception {
 
+		this.dao.persist(cliente);
+	}
+	/**
+	 *
+	 */
 	@Override
-	public Cliente modificar(Cliente cliente) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public void modificar(Cliente cliente) throws Exception {
+		this.dao.persist(cliente);
 	}
-
+	/**
+	 *
+	 */
 	@Override
 	public List<Cliente> listarCliente() throws Exception {
 
 		return this.dao.findAll().list();
 	}
-
+	/**
+	 *
+	 */
 	@Override
 	public Cliente buscarPorId(Integer id) throws Exception {
 

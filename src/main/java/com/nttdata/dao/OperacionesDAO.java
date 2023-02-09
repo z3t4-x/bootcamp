@@ -4,6 +4,6 @@ import com.nttdata.domain.Operaciones;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
-public class TransaccionDAO implements PanacheRepository<Operaciones>{
+public interface OperacionesDAO extends PanacheRepository<Operaciones>{
 
 }
