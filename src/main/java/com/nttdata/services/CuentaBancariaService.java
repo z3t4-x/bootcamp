@@ -2,19 +2,19 @@ package com.nttdata.services;
 
 import java.util.List;
 
-import com.nttdata.domain.Operaciones;
+import com.nttdata.domain.CuentaBancaria;
 
 
 
-public interface IOperacionesService {
+public interface CuentaBancariaService {
 
 	/**
-	 * método para registrar una nueva transaccion
+	 * método para registrar una nueva cuenta bancaria
 	 * @param transaccion
 	 *
 	 * @throws Exception
 	 */
-	public void registrar(Operaciones transaccion) throws Exception;
+	public void registrar(CuentaBancaria cuentaBancaria) throws Exception;
 
 	/**
 	 * método para modificar
@@ -22,13 +22,13 @@ public interface IOperacionesService {
 	 *
 	 * @throws Exception
 	 */
-	public void  modificar(Operaciones transaccion) throws Exception;
+	public void  modificar(Long id, CuentaBancaria cuentaBancaria) throws Exception;
 	/**
 	 * método para listar
 	 * @return
 	 * @throws Exception
 	 */
-	List<Operaciones> listarTransaccion() throws Exception;
+	List<CuentaBancaria> listarCuentaBancaria() throws Exception;
 
 	/**
 	 * método para buscar por id
@@ -36,13 +36,13 @@ public interface IOperacionesService {
 	 * @return
 	 * @throws Exception
 	 */
-	Operaciones buscarPorId(Long id) throws Exception;
+	CuentaBancaria buscarPorId(Long id) throws Exception;
 
 	/**
 	 * método para eliminar de forma lógica
 	 * @param id
 	 * @throws Exception
 	 */
-	void eliminar(Integer id) throws Exception;
+	void eliminar(Long id) throws Exception;
 
 }

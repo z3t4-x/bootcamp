@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.nttdata.domain.Cliente;
 
-public interface IClienteService {
+public interface ClienteService {
 	/**
 	 * método para registrar cliente
 	 * @param cliente
@@ -12,12 +12,13 @@ public interface IClienteService {
 	 */
 	public void registrar(Cliente cliente) throws Exception;
 	/**
-	 * método para modificar cliente
+	 * modificar
+	 * @param id
 	 * @param cliente
 	 * @throws Exception
 	 */
 
-	public void  modificar(Cliente cliente) throws Exception;
+	public void  modificar(Long id, Cliente cliente) throws Exception;
 	/**
 	 * método para listar clientes
 	 * @return
@@ -31,7 +32,9 @@ public interface IClienteService {
 	 * @return
 	 * @throws Exception
 	 */
-	Cliente buscarPorId(Integer id) throws Exception;
+	Cliente buscarPorId(Long id) throws Exception;
+
+
 
 
 
