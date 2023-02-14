@@ -53,6 +53,19 @@ public class CuentaBancaria {
 	private CatalogosValores operaciones;
 
 
+	@ManyToOne
+	@JoinColumn(name ="ID_CLIENTE")
+	private Cliente cliente;
+
+
+	/**
+	 * identifica el tipo de operación, retiro, depósito
+	 */
+	@ManyToOne
+	@JoinColumn(name ="ID_TARJETA")
+	private Tarjeta tarjeta;
+
+
 	@Column(name="FC_ALTA_FILA")
 	private LocalDateTime fcAltaFila;
 
@@ -188,12 +201,32 @@ public class CuentaBancaria {
 		this.fcBajaFila = fcBajaFila;
 	}
 
+
+
+
+
+
+	/**
+	 * @return the tarjeta
+	 */
+	public Tarjeta getTarjeta() {
+		return this.tarjeta;
+	}
+
+	/**
+	 * @param tarjeta the tarjeta to set
+	 */
+	public void setTarjeta(Tarjeta tarjeta) {
+		this.tarjeta = tarjeta;
+	}
+
+
 	@Override
 	public String toString() {
 		return "CuentaBancaria [idCuenta=" + this.idCuenta + ", nmCuenta=" + this.nmCuenta + ", tjAsocPrincipal="
 				+ this.tjAsocPrincipal + ", tjAsocSecundaria=" + this.tjAsocSecundaria + ", pagoCredito=" + this.pagoCredito
-				+ ", operaciones=" + this.operaciones + ", fcAltaFila=" + this.fcAltaFila + ", fcModifFila=" + this.fcModifFila
-				+ ", fcBajaFila=" + this.fcBajaFila + "]";
+				+ ", operaciones=" + this.operaciones + ", tarjeta=" + this.tarjeta + ", fcAltaFila=" + this.fcAltaFila
+				+ ", fcModifFila=" + this.fcModifFila + ", fcBajaFila=" + this.fcBajaFila + "]";
 	}
 
 	@Override
@@ -224,6 +257,20 @@ public class CuentaBancaria {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * @return the cliente
+	 */
+	public Cliente getCliente() {
+		return this.cliente;
+	}
+
+	/**
+	 * @param cliente the cliente to set
+	 */
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 

@@ -7,7 +7,10 @@ import java.util.Objects;
 import org.hibernate.service.spi.ServiceException;
 
 import com.nttdata.dao.CuentaBancariaDAO;
+import com.nttdata.dao.TarjetaDAO;
 import com.nttdata.domain.CuentaBancaria;
+import com.nttdata.domain.Tarjeta;
+import com.nttdata.utils.Constantes;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -19,6 +22,9 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 
 	@Inject
 	private CuentaBancariaDAO dao;
+
+	@Inject
+	private TarjetaDAO tarjetaDAO;
 	/**
 	 *
 	 */
@@ -26,11 +32,18 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 	@Transactional
 	public void registrar(CuentaBancaria cuentaBancaria) throws Exception {
 
-
 		LocalDateTime fcActual = LocalDateTime.now();
 
 		cuentaBancaria.setFcAltaFila(fcActual);
+		cuentaBancaria.setTjAsocSecundaria(Constantes.Afimarcion.AFIRMACION_N);
+
 		this.dao.persist(cuentaBancaria);
+
+
+
+
+
+
 
 
 	}
@@ -93,6 +106,56 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 	public CuentaBancaria buscarPorId(Long id) throws Exception {
 
 		return this.dao.findById(id);
+	}
+
+
+	/**
+	 * método para  retiro
+	 */
+
+	private Boolean retiraMonto( CuentaBancaria cuentaBancaria) {
+
+		Tarjeta tarjeta = this.tarjetaDAO.findById(cuentaBancaria.getTarjeta().getIdTarjeta());
+
+		Boolean puedeRetirar = Boolean.FALSE;
+
+		if(Objects.isNull(tarjeta.getIdTarjeta())) {
+			throw new ServiceException("Error, no se ha podido encontrar la tarjeta");
+		}
+
+		// valida si el tipo de operación es de RETIRO
+		if(Constantes.CodigoTipoOperacion.RETIRO.equals(cuentaBancaria.getOperaciones().getDsValor())) {
+
+			// si no es cuenta principal lanza error
+			if(Constantes.Afimarcion.AFIRMACION_S.equals(cuentaBancaria.getTjAsocSecundaria()) ||
+					tarjeta.getTipoTarjeta().getCdCodigo().equals(Constantes.TipoTarjeta.TARJETA_CREDITO)) {
+
+				throw new ServiceException("Error, no se puede realizar ningún tipo de operaciones con la cuenta secundaria");
+			}
+
+			// valida que sea cuenta principal
+			if(Constantes.Afimarcion.AFIRMACION_S.equals(cuentaBancaria.getTjAsocPrincipal()) &&
+					tarjeta.getTipoTarjeta().getCdCodigo().equals(Constantes.TipoTarjeta.TARJETA_DEBITO)) {
+
+
+				if(tarjeta.getSaldoActual() > tarjeta.getSaldoDisponible()) {
+					throw new ServiceException("Error, no puede retirar, su saldo disponible es : " + tarjeta.getSaldoDisponible());
+				}
+
+				Double saldoActual  = tarjeta.getSaldoActual() - tarjeta.getSaldoDisponible();
+
+				tarjeta.setSaldoActual(saldoActual);
+				tarjeta.setSaldoDisponible(saldoActual);
+				this.tarjetaDAO.persist(tarjeta);
+
+				puedeRetirar = Boolean.TRUE;
+
+
+			}
+
+		}
+		return puedeRetirar;
+
 	}
 
 }

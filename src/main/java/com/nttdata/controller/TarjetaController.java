@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import com.nttdata.domain.CuentaBancaria;
-import com.nttdata.services.CuentaBancariaService;
+import com.nttdata.domain.Tarjeta;
+import com.nttdata.services.TarjetaService;
 
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -20,12 +20,12 @@ import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-@Path("/cuentaBancaria")
+@Path("/tarjetas")
 @Produces(MediaType.APPLICATION_JSON)
 public class TarjetaController {
 
 	@Inject
-	private CuentaBancariaService service;
+	private TarjetaService service;
 
 	/**
 	 * método para listar
@@ -33,11 +33,11 @@ public class TarjetaController {
 	 * @throws Exception
 	 */
 	@GET
-	public Response listarCuentaBancaria() throws Exception {
+	public Response listar() throws Exception {
 
-		List<CuentaBancaria> lstCuentaBancaria = this.service.listarCuentaBancaria();
+		List<Tarjeta> lstTarjeta = this.service.listar();
 
-		return Response.ok(lstCuentaBancaria).build();
+		return Response.ok(lstTarjeta).build();
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class TarjetaController {
 	@Path("{id}")
 	public Response buscarId(@PathParam("id") Long id) throws Exception {
 
-		Optional<CuentaBancaria> tarjeta = Optional.of(this.service.buscarPorId(id));
+		Optional<Tarjeta> tarjeta = Optional.of(this.service.buscarPorId(id));
 
 		return tarjeta.map(c  -> Response.ok(c)
 				.build())
@@ -70,9 +70,9 @@ public class TarjetaController {
 	@POST
 	@Transactional
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response registrar(CuentaBancaria cuentaBancaria) throws Exception {
+	public Response registrar(Tarjeta tarjeta) throws Exception {
 
-		this.service.registrar(cuentaBancaria);
+		this.service.registrar(tarjeta);
 		return  Response.status(Response.Status.CREATED).build();
 	}
 
@@ -82,17 +82,17 @@ public class TarjetaController {
 	@Transactional
 	@Path("/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response modificar(@PathParam("id") Long id,CuentaBancaria cuentaBancaria) throws Exception {
+	public Response modificar(@PathParam("id") Long id,Tarjeta tarjeta) throws Exception {
 
-		CuentaBancaria ctaBancaria =  this.service.buscarPorId(id);
+		Tarjeta tjta =  this.service.buscarPorId(id);
 
-		if (Objects.isNull(ctaBancaria)) {
+		if (Objects.isNull(tjta)) {
 			throw new WebApplicationException("Tarjeta no encontrado, error al intentar modificar el Tarjeta", Response.Status.NOT_FOUND);
 		}
 
-		this.service.modificar(id, ctaBancaria);
+		this.service.modificar(id, tjta);
 
-		return Response.ok(ctaBancaria).build();
+		return Response.ok(tjta).build();
 	}
 
 

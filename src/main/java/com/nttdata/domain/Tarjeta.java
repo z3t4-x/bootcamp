@@ -19,34 +19,79 @@ public class Tarjeta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private  Long idTarjeta;
-
+	/**
+	 * numero de tarjeta
+	 */
 	@Column(name="NM_TARJETA")
 	private String nmTarjeta;
-
+	/**
+	 * código pin
+	 */
 	@Column(name="CD_PIN")
 	private Integer cdPin;
-
+	/**
+	 * fecha vencimiento
+	 */
 	@Column(name="FC_VENCIMIENTO")
 	private LocalDate fcVencimiento;
-
+	/**
+	 * codigo validación
+	 */
 	@Column(name="CD_VALIDACION")
 	private Integer cdValidacion;
-
+	/**
+	 * fecha de corte de tarjeta
+	 */
 	@Column(name="FC_CORTE")
 	private LocalDate fcCorte;
-
+	/**
+	 * fecha de vencimiento mensual
+	 */
 	@Column(name="FC_VENCIMIENTO_MENSUAL")
 	private LocalDate fcVencimientoMensual;
-
+	/**
+	 * saldo actual desps del retiro
+	 */
 	@Column(name="SALDO_ACTUAL")
 	private Double saldoActual;
-
+	/**
+	 * fecha limite de crédito
+	 */
 	@Column(name="LIMITE_CREDITO")
 	private Double limiteCredito;
-
+	/**
+	 * tipo de tarjeta {débito o crédito}
+	 */
 	@ManyToOne
 	@JoinColumn(name ="ID_TIPO_TARJETA", nullable =  false)
 	private CatalogosValores tipoTarjeta;
+
+	/**
+	 * saldo de la tarjeta crédito
+	 */
+	@Column(name="SALDO_INICIAL")
+	private Double saldoInicial;
+
+
+	/**
+	 * saldo de la tarjeta
+	 */
+	@Column(name="SALDO_DISPONIBLE")
+	private Double saldoDisponible;
+
+	/**
+	 * @return the saldoDisponible
+	 */
+	public Double getSaldoDisponible() {
+		return this.saldoDisponible;
+	}
+
+	/**
+	 * @param saldoDisponible the saldoDisponible to set
+	 */
+	public void setSaldoDisponible(Double saldoDisponible) {
+		this.saldoDisponible = saldoDisponible;
+	}
 
 	/**
 	 * @return the idTarjeta
@@ -190,12 +235,27 @@ public class Tarjeta {
 		this.tipoTarjeta = tipoTarjeta;
 	}
 
+
 	@Override
 	public String toString() {
 		return "Tarjeta [idTarjeta=" + this.idTarjeta + ", nmTarjeta=" + this.nmTarjeta + ", cdPin=" + this.cdPin + ", fcVencimiento="
 				+ this.fcVencimiento + ", cdValidacion=" + this.cdValidacion + ", fcCorte=" + this.fcCorte + ", fcVencimientoMensual="
 				+ this.fcVencimientoMensual + ", saldoActual=" + this.saldoActual + ", limiteCredito=" + this.limiteCredito
-				+ ", tipoTarjeta=" + this.tipoTarjeta + "]";
+				+ ", tipoTarjeta=" + this.tipoTarjeta + ", saldoInicial=" + this.saldoInicial + "]";
+	}
+
+	/**
+	 * @return the saldoInicial
+	 */
+	public Double getSaldoInicial() {
+		return this.saldoInicial;
+	}
+
+	/**
+	 * @param saldoInicial the saldoInicial to set
+	 */
+	public void setSaldoInicial(Double saldoInicial) {
+		this.saldoInicial = saldoInicial;
 	}
 
 

@@ -20,7 +20,7 @@ import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-@Path("/PagoCredito")
+@Path("/pagoCreditos")
 @Produces(MediaType.APPLICATION_JSON)
 public class PagoCreditoController {
 
