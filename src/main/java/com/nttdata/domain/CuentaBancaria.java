@@ -196,7 +196,7 @@ public class CuentaBancaria {
 	public void setTarjeta(Tarjeta tarjeta) {
 		this.tarjeta = tarjeta;
 	}
-
+			
 	@Override
 	public String toString() {
 		return "CuentaBancaria [idCuenta=" + this.idCuenta + ", nmCuenta=" + this.nmCuenta + ", tjAsocPrincipal="
