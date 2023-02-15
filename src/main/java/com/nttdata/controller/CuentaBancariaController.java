@@ -10,6 +10,7 @@ import com.nttdata.services.CuentaBancariaService;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
@@ -95,7 +96,23 @@ public class CuentaBancariaController {
 		return Response.ok(ctBancaria).build();
 	}
 
+	@DELETE
+	@Transactional
+	@Path("/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response eliminarCuentaBancaria(@PathParam("id") Long id, CuentaBancaria cliente) throws Exception {
 
+		CuentaBancaria clie =  this.service.buscarPorId(id);
+
+		if (Objects.isNull(clie.getIdCuenta())) {
+			throw new WebApplicationException("Cuenta Bancaria no encontrada, error al intentar modificar La cuenta Bancaria", Response.Status.NOT_FOUND);
+		}
+
+		this.service.eliminar(id);
+
+		return Response.ok(clie).build();
+
+	}
 
 
 

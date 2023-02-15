@@ -12,6 +12,8 @@ import com.nttdata.domain.PagoCredito;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import jakarta.ws.rs.WebApplicationException;
+import jakarta.ws.rs.core.Response;
 
 @ApplicationScoped
 public class PagoCreditoServiceImpl implements PagoCreditoService{
@@ -63,7 +65,12 @@ public class PagoCreditoServiceImpl implements PagoCreditoService{
 	@Override
 	public List<PagoCredito> listarPagoCredito() throws Exception {
 
-		return this.dao.findAll().list();
+		List<PagoCredito> lstPagoCreditos  = this.dao.findAll().list();
+		// lista PagoCredito que no estan dado de baja
+		if(!lstPagoCreditos.isEmpty()) {
+			lstPagoCreditos = lstPagoCreditos.stream().filter(c  -> c.getFcBajaFila()==null).toList();
+		}
+		return lstPagoCreditos;
 	}
 
 
@@ -75,6 +82,21 @@ public class PagoCreditoServiceImpl implements PagoCreditoService{
 	public PagoCredito buscarPorId(Long id) throws Exception {
 
 		return this.dao.findById(id);
+	}
+	@Override
+	public void eliminar(Long id) throws Exception {
+		
+		PagoCredito cli = this.dao.findById(id);
+
+		if (Objects.isNull(cli.getIdPagoCredito())) {
+			throw new WebApplicationException("Pago Credito no encontrado, error al intentar eliminar el cliente", Response.Status.NOT_FOUND);
+		}
+
+		LocalDateTime fcBajaActual =  LocalDateTime.now();
+
+		cli.setFcBajaFila(fcBajaActual);
+		this.dao.persist(cli);
+		
 	}
 
 }

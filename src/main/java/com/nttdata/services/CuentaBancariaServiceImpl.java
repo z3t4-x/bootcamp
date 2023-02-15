@@ -15,6 +15,8 @@ import com.nttdata.utils.Constantes;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import jakarta.ws.rs.WebApplicationException;
+import jakarta.ws.rs.core.Response;
 
 @ApplicationScoped
 public class CuentaBancariaServiceImpl implements CuentaBancariaService{
@@ -38,13 +40,6 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 		cuentaBancaria.setTjAsocSecundaria(Constantes.Afimarcion.AFIRMACION_N);
 
 		this.dao.persist(cuentaBancaria);
-
-
-
-
-
-
-
 
 	}
 	/**
@@ -77,10 +72,12 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 	 */
 	@Override
 	public List<CuentaBancaria> listarCuentaBancaria() throws Exception {
-
-
-
-		return this.dao.findAll().list();
+		List<CuentaBancaria> lstCuentaBancarias  = this.dao.findAll().list();
+		// lista CuentaBancaria que no estan dado de baja
+		if(!lstCuentaBancarias.isEmpty()) {
+			lstCuentaBancarias = lstCuentaBancarias.stream().filter(c  -> c.getFcBajaFila()==null).toList();
+		}
+		return lstCuentaBancarias;
 	}
 
 
@@ -89,16 +86,25 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 	 */
 	@Override
 	public void eliminar(Long id) throws Exception {
-
+/* 
 		CuentaBancaria cuentaBancaria = new CuentaBancaria();
 
 		if(Objects.nonNull(id)) {
 			LocalDateTime fcBaja =  LocalDateTime.now();
 			cuentaBancaria.setFcBajaFila(fcBaja);}
 
-		this.dao.persist(cuentaBancaria);
+		this.dao.persist(cuentaBancaria);*/
 
+		CuentaBancaria cli = this.dao.findById(id);
 
+		if (Objects.isNull(cli.getIdCuenta())) {
+			throw new WebApplicationException("CuentaBancaria no encontrado, error al intentar eliminar el cliente", Response.Status.NOT_FOUND);
+		}
+
+		LocalDateTime fcBajaActual =  LocalDateTime.now();
+
+		cli.setFcBajaFila(fcBajaActual);
+		this.dao.persist(cli);
 
 	}
 	/**
