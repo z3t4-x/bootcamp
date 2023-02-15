@@ -72,8 +72,7 @@ public class CuentaBancaria {
 	@Column(name="FC_BAJA_FILA")
 	private LocalDateTime fcBajaFila;
 
-	@Column(name="ID_TARJETA")
-	private Tarjeta tarjeta;
+
 	/**
 	 * @return the idCuenta
 	 */
@@ -205,26 +204,11 @@ public class CuentaBancaria {
 
 
 
-	/**
-	 * @return the tarjeta
-	 */
-	public Tarjeta getTarjeta() {
-		return this.tarjeta;
-	}
-
-	/**
-	 * @param tarjeta the tarjeta to set
-	 */
-	public void setTarjeta(Tarjeta tarjeta) {
-		this.tarjeta = tarjeta;
-	}
-
-
 	@Override
 	public String toString() {
 		return "CuentaBancaria [idCuenta=" + this.idCuenta + ", nmCuenta=" + this.nmCuenta + ", tjAsocPrincipal="
 				+ this.tjAsocPrincipal + ", tjAsocSecundaria=" + this.tjAsocSecundaria + ", pagoCredito=" + this.pagoCredito
-				+ ", operaciones=" + this.operaciones + ", tarjeta=" + this.tarjeta + ", fcAltaFila=" + this.fcAltaFila
+				+ ", operaciones=" + this.operaciones + ", cliente=" + this.cliente + ", fcAltaFila=" + this.fcAltaFila
 				+ ", fcModifFila=" + this.fcModifFila + ", fcBajaFila=" + this.fcBajaFila + "]";
 	}
 

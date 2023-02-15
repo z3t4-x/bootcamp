@@ -72,7 +72,7 @@ public class Tarjeta {
 
 
 	@OneToMany
-	@JoinColumn(name ="ID_TIPO_TARJETA", nullable =  false)
+	@JoinColumn(name ="ID_TARJETA", nullable =  false)
 	private List<CuentaBancaria> cuentasBancarias;
 
 
@@ -246,10 +246,10 @@ public class Tarjeta {
 		this.tipoTarjeta = tipoTarjeta;
 	}
 	/**
-	 * @return cuentasBancarias 
+	 * @return cuentasBancarias
 	 */
 	public List<CuentaBancaria> getCuentasBancarias() {
-		return cuentasBancarias;
+		return this.cuentasBancarias;
 	}
 	/**
 	 * @param cuentasBancarias the cuentasBancarias to set
