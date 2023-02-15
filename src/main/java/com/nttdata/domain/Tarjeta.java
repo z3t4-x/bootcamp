@@ -51,7 +51,7 @@ public class Tarjeta {
 	private CatalogosValores tipoTarjeta;
 
 	@OneToMany
-	@JoinColumn(name ="ID_TIPO_TARJETA", nullable =  false)
+	@JoinColumn(name ="ID_TARJETA", nullable =  false)
 	private List<CuentaBancaria> cuentasBancarias;
 	/**
 	 * @return the idTarjeta
