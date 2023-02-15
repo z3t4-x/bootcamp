@@ -34,4 +34,11 @@ public interface PagoCreditoService {
 	 */
 	PagoCredito buscarPorId(Long id) throws Exception;
 
+	/**
+	 * método para eliminar de forma lógica
+	 * @param id
+	 * @throws Exception
+	 */
+	void eliminar(Long id) throws Exception;
+
 }

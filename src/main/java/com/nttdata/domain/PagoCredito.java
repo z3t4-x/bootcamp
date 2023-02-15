@@ -53,6 +53,19 @@ public class PagoCredito {
 	@Column(name="SALDO_ACTUAL")
 	private Double saldoActual;
 
+	@Column(name="FC_ALTA_FILA")
+	private LocalDateTime fcAltaFila;
+	/**
+	 * fecha de modificacion
+	 */
+	@Column(name="FC_MODIF_FILA")
+	private LocalDateTime fcModifFila;
+	/**
+	 * fecha de baja
+	 */
+	@Column(name="FC_BAJA_FILA")
+	private LocalDateTime fcBajaFila;
+
 	/**
 	 * @return the idPagoCredito
 	 */
@@ -135,6 +148,30 @@ public class PagoCredito {
 	 */
 	public void setSaldoActual(Double saldoActual) {
 		this.saldoActual = saldoActual;
+	}
+	
+	public LocalDateTime getFcAltaFila() {
+		return fcAltaFila;
+	}
+
+	public void setFcAltaFila(LocalDateTime fcAltaFila) {
+		this.fcAltaFila = fcAltaFila;
+	}
+
+	public LocalDateTime getFcModifFila() {
+		return fcModifFila;
+	}
+
+	public void setFcModifFila(LocalDateTime fcModifFila) {
+		this.fcModifFila = fcModifFila;
+	}
+
+	public LocalDateTime getFcBajaFila() {
+		return fcBajaFila;
+	}
+
+	public void setFcBajaFila(LocalDateTime fcBajaFila) {
+		this.fcBajaFila = fcBajaFila;
 	}
 
 	@Override

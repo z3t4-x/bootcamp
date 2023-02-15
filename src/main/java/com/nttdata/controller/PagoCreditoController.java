@@ -10,6 +10,7 @@ import com.nttdata.services.PagoCreditoService;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
@@ -95,8 +96,22 @@ public class PagoCreditoController {
 		return Response.ok(pgCredito).build();
 	}
 
+	@DELETE
+	@Transactional
+	@Path("/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response eliminarPagoCredito(@PathParam("id") Long id, PagoCredito cliente) throws Exception {
 
+		PagoCredito clie =  this.service.buscarPorId(id);
 
+		if (Objects.isNull(clie.getIdPagoCredito())) {
+			throw new WebApplicationException("Pago Credito no encontrado, error al intentar modificar el pago credito", Response.Status.NOT_FOUND);
+		}
 
+		this.service.eliminar(id);
+
+		return Response.ok(clie).build();
+
+	}
 
 }
