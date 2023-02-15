@@ -117,7 +117,10 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 
 	private Boolean retiraMonto( CuentaBancaria cuentaBancaria) {
 
-		Tarjeta tarjeta = this.tarjetaDAO.findById(cuentaBancaria.getTarjeta().getIdTarjeta());
+		// PENDIENTE
+		Tarjeta tarjeta = this.tarjetaDAO.findById(1L);
+
+
 
 		Boolean puedeRetirar = Boolean.FALSE;
 
