@@ -62,6 +62,8 @@ public class CuentaBancaria {
 	@Column(name="FC_BAJA_FILA")
 	private LocalDateTime fcBajaFila;
 
+	@Column(name="ID_TARJETA")
+	private Tarjeta tarjeta;
 	/**
 	 * @return the idCuenta
 	 */
@@ -186,6 +188,13 @@ public class CuentaBancaria {
 	 */
 	public void setFcBajaFila(LocalDateTime fcBajaFila) {
 		this.fcBajaFila = fcBajaFila;
+	} 
+	public Tarjeta getTarjeta() {
+		return tarjeta;
+	}
+
+	public void setTarjeta(Tarjeta tarjeta) {
+		this.tarjeta = tarjeta;
 	}
 
 	@Override
@@ -225,7 +234,7 @@ public class CuentaBancaria {
 		}
 		return true;
 	}
-
+	
 
 
 
