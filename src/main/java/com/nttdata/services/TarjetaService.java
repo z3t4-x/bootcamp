@@ -35,7 +35,13 @@ public interface TarjetaService {
 	Tarjeta buscarPorId(Long id) throws Exception;
 
 
-
+	/**
+	 * eliminar de forma lógica
+	 * @param id
+	 *
+	 * @throws Exception
+	 */
+	public void  eliminar(Long id, Tarjeta tarjeta) throws Exception;
 
 
 }

@@ -37,7 +37,7 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 		LocalDateTime fcActual = LocalDateTime.now();
 
 		cuentaBancaria.setFcAltaFila(fcActual);
-		cuentaBancaria.setTjAsocSecundaria(Constantes.Afimarcion.AFIRMACION_N);
+		cuentaBancaria.setCuentaPrincipal(Constantes.Afimarcion.AFIRMACION_S);
 
 		this.dao.persist(cuentaBancaria);
 
@@ -56,8 +56,7 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 
 		LocalDateTime fcActual = LocalDateTime.now();
 
-		ctBancaria.setTjAsocPrincipal("S");
-		ctBancaria.setTjAsocSecundaria("N");
+
 		ctBancaria.setPagoCredito(cuentaBancaria.getPagoCredito());
 		ctBancaria.setOperaciones(cuentaBancaria.getOperaciones());
 		ctBancaria.setNmCuenta(cuentaBancaria.getNmCuenta());
@@ -138,14 +137,14 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 		if(Constantes.CodigoTipoOperacion.RETIRO.equals(cuentaBancaria.getOperaciones().getDsValor())) {
 
 			// si no es cuenta principal lanza error
-			if(Constantes.Afimarcion.AFIRMACION_S.equals(cuentaBancaria.getTjAsocSecundaria()) ||
+			if(Constantes.Afimarcion.AFIRMACION_N.equals(cuentaBancaria.getCuentaPrincipal()) ||
 					tarjeta.getTipoTarjeta().getCdCodigo().equals(Constantes.TipoTarjeta.TARJETA_CREDITO)) {
 
 				throw new ServiceException("Error, no se puede realizar ningún tipo de operaciones con la cuenta secundaria");
 			}
 
 			// valida que sea cuenta principal
-			if(Constantes.Afimarcion.AFIRMACION_S.equals(cuentaBancaria.getTjAsocPrincipal()) &&
+			if(Constantes.Afimarcion.AFIRMACION_S.equals(cuentaBancaria.getCuentaPrincipal()) &&
 					tarjeta.getTipoTarjeta().getCdCodigo().equals(Constantes.TipoTarjeta.TARJETA_DEBITO)) {
 
 

@@ -1,8 +1,10 @@
 package com.nttdata.domain;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -71,9 +73,8 @@ public class Tarjeta {
 	private CatalogosValores tipoTarjeta;
 
 
-	@OneToMany
-	@JoinColumn(name ="ID_TARJETA", nullable =  false)
-	private List<CuentaBancaria> cuentasBancarias;
+	@OneToMany(mappedBy = "tarjeta", cascade = {CascadeType.ALL}, orphanRemoval = true)
+	private List<CuentaBancaria> lstCuentaBancaria;
 
 
 
@@ -89,6 +90,22 @@ public class Tarjeta {
 	 */
 	@Column(name="SALDO_DISPONIBLE")
 	private Double saldoDisponible;
+
+
+	@Column(name="FC_ALTA_FILA")
+	private LocalDateTime fcAltaFila;
+	/**
+	 * fecha de modificacion
+	 */
+	@Column(name="FC_MODIF_FILA")
+	private LocalDateTime fcModifFila;
+	/**
+	 * fecha de baja
+	 */
+	@Column(name="FC_BAJA_FILA")
+	private LocalDateTime fcBajaFila;
+
+
 
 	/**
 	 * @return the saldoDisponible
@@ -245,26 +262,7 @@ public class Tarjeta {
 	public void setTipoTarjeta(CatalogosValores tipoTarjeta) {
 		this.tipoTarjeta = tipoTarjeta;
 	}
-	/**
-	 * @return cuentasBancarias
-	 */
-	public List<CuentaBancaria> getCuentasBancarias() {
-		return this.cuentasBancarias;
-	}
-	/**
-	 * @param cuentasBancarias the cuentasBancarias to set
-	 */
-	public void setCuentasBancarias(List<CuentaBancaria> cuentasBancarias) {
-		this.cuentasBancarias = cuentasBancarias;
-	}
 
-	@Override
-	public String toString() {
-		return "Tarjeta [idTarjeta=" + this.idTarjeta + ", nmTarjeta=" + this.nmTarjeta + ", cdPin=" + this.cdPin + ", fcVencimiento="
-				+ this.fcVencimiento + ", cdValidacion=" + this.cdValidacion + ", fcCorte=" + this.fcCorte + ", fcVencimientoMensual="
-				+ this.fcVencimientoMensual + ", saldoActual=" + this.saldoActual + ", limiteCredito=" + this.limiteCredito
-				+ ", tipoTarjeta=" + this.tipoTarjeta + ", saldoInicial=" + this.saldoInicial + "]";
-	}
 
 	/**
 	 * @return the saldoInicial
@@ -279,6 +277,73 @@ public class Tarjeta {
 	public void setSaldoInicial(Double saldoInicial) {
 		this.saldoInicial = saldoInicial;
 	}
+
+	/**
+	 * @return the lstCuentaBancaria
+	 */
+	public List<CuentaBancaria> getLstCuentaBancaria() {
+		return this.lstCuentaBancaria;
+	}
+
+	/**
+	 * @param lstCuentaBancaria the lstCuentaBancaria to set
+	 */
+	public void setLstCuentaBancaria(List<CuentaBancaria> lstCuentaBancaria) {
+		this.lstCuentaBancaria = lstCuentaBancaria;
+	}
+
+	/**
+	 * @return the fcAltaFila
+	 */
+	public LocalDateTime getFcAltaFila() {
+		return this.fcAltaFila;
+	}
+
+	/**
+	 * @param fcAltaFila the fcAltaFila to set
+	 */
+	public void setFcAltaFila(LocalDateTime fcAltaFila) {
+		this.fcAltaFila = fcAltaFila;
+	}
+
+	/**
+	 * @return the fcModifFila
+	 */
+	public LocalDateTime getFcModifFila() {
+		return this.fcModifFila;
+	}
+
+	/**
+	 * @param fcModifFila the fcModifFila to set
+	 */
+	public void setFcModifFila(LocalDateTime fcModifFila) {
+		this.fcModifFila = fcModifFila;
+	}
+
+	/**
+	 * @return the fcBajaFila
+	 */
+	public LocalDateTime getFcBajaFila() {
+		return this.fcBajaFila;
+	}
+
+	/**
+	 * @param fcBajaFila the fcBajaFila to set
+	 */
+	public void setFcBajaFila(LocalDateTime fcBajaFila) {
+		this.fcBajaFila = fcBajaFila;
+	}
+
+	@Override
+	public String toString() {
+		return "Tarjeta [idTarjeta=" + this.idTarjeta + ", nmTarjeta=" + this.nmTarjeta + ", cdPin=" + this.cdPin + ", fcVencimiento="
+				+ this.fcVencimiento + ", cdValidacion=" + this.cdValidacion + ", fcCorte=" + this.fcCorte + ", fcVencimientoMensual="
+				+ this.fcVencimientoMensual + ", saldoActual=" + this.saldoActual + ", limiteCredito=" + this.limiteCredito
+				+ ", tipoTarjeta=" + this.tipoTarjeta + ", lstCuentaBancaria=" + this.lstCuentaBancaria + ", saldoInicial="
+				+ this.saldoInicial + ", saldoDisponible=" + this.saldoDisponible + ", fcAltaFila=" + this.fcAltaFila
+				+ ", fcModifFila=" + this.fcModifFila + ", fcBajaFila=" + this.fcBajaFila + "]";
+	}
+
 
 
 
