@@ -59,17 +59,6 @@ public class CuentaBancaria {
 	@JoinColumn(name ="ID_CLIENTE")
 	private Cliente cliente;
 
-
-	/**
-	 * identifica el tipo de operación, retiro, depósito
-	 */
-	@ManyToOne
-	@JoinColumn(name ="ID_TARJETA")
-	private Tarjeta tarjeta;
-
-	/**
-	 * fecha de alta de registro
-	 */
 	@Column(name="FC_ALTA_FILA")
 	private LocalDateTime fcAltaFila;
 	/**
@@ -83,6 +72,8 @@ public class CuentaBancaria {
 	@Column(name="FC_BAJA_FILA")
 	private LocalDateTime fcBajaFila;
 
+	@Column(name="ID_TARJETA")
+	private Tarjeta tarjeta;
 	/**
 	 * @return the idCuenta
 	 */

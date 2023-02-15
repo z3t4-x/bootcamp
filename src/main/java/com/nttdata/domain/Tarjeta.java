@@ -1,6 +1,7 @@
 package com.nttdata.domain;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -67,6 +69,13 @@ public class Tarjeta {
 	@ManyToOne
 	@JoinColumn(name ="ID_TIPO_TARJETA", nullable =  false)
 	private CatalogosValores tipoTarjeta;
+
+
+	@OneToMany
+	@JoinColumn(name ="ID_TIPO_TARJETA", nullable =  false)
+	private List<CuentaBancaria> cuentasBancarias;
+
+
 
 	/**
 	 * saldo de la tarjeta crédito
@@ -236,7 +245,18 @@ public class Tarjeta {
 	public void setTipoTarjeta(CatalogosValores tipoTarjeta) {
 		this.tipoTarjeta = tipoTarjeta;
 	}
-
+	/**
+	 * @return cuentasBancarias 
+	 */
+	public List<CuentaBancaria> getCuentasBancarias() {
+		return cuentasBancarias;
+	}
+	/**
+	 * @param cuentasBancarias the cuentasBancarias to set
+	 */
+	public void setCuentasBancarias(List<CuentaBancaria> cuentasBancarias) {
+		this.cuentasBancarias = cuentasBancarias;
+	}
 
 	@Override
 	public String toString() {
