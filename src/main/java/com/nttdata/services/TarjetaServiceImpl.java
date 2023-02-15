@@ -1,5 +1,6 @@
 package com.nttdata.services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,6 +10,8 @@ import com.nttdata.domain.Tarjeta;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import jakarta.ws.rs.WebApplicationException;
+import jakarta.ws.rs.core.Response;
 
 @ApplicationScoped
 public class TarjetaServiceImpl implements TarjetaService{
@@ -46,14 +49,22 @@ public class TarjetaServiceImpl implements TarjetaService{
 
 
 	}
+
+
 	/**
 	 *
 	 */
 	@Override
 	public List<Tarjeta> listar() throws Exception {
 
-		return this.dao.findAll().list();
+		List<Tarjeta> lstTarjetas  = this.dao.findAll().list();
+		// lista tarjeta que no estan dado de baja
+		if(!lstTarjetas.isEmpty()) {
+			lstTarjetas = lstTarjetas.stream().filter(c  -> c.getFcBajaFila()==null).toList();
+		}
+		return lstTarjetas;
 	}
+
 	/**
 	 *
 	 */
@@ -61,6 +72,24 @@ public class TarjetaServiceImpl implements TarjetaService{
 	public Tarjeta buscarPorId(Long id) throws Exception {
 
 		return this.dao.findByIdOptional(id).orElse(null);
+	}
+
+	/**
+	 *
+	 */
+	@Override
+	public void eliminar(Long id, Tarjeta tarjeta) throws Exception {
+		Tarjeta tarjet = this.dao.findById(id);
+
+		if (Objects.isNull(tarjet.getIdTarjeta())) {
+			throw new WebApplicationException("Tarjeta no encontrada, error al intentar eliminar. ", Response.Status.NOT_FOUND);
+		}
+
+		LocalDateTime fcBajaActual =  LocalDateTime.now();
+
+		tarjet.setFcBajaFila(fcBajaActual);
+		this.dao.persist(tarjet);
+
 	}
 
 

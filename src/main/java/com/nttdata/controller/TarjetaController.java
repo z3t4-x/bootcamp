@@ -10,6 +10,7 @@ import com.nttdata.services.TarjetaService;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
@@ -76,7 +77,13 @@ public class TarjetaController {
 		return  Response.status(Response.Status.CREATED).build();
 	}
 
-
+	/**
+	 * método para modificar
+	 * @param id
+	 * @param tarjeta
+	 * @return
+	 * @throws Exception
+	 */
 
 	@PUT
 	@Transactional
@@ -96,7 +103,30 @@ public class TarjetaController {
 	}
 
 
+	/**
+	 * método para eliminar de forma lógica
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
 
+	@DELETE
+	@Transactional
+	@Path("/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response eliminarCliente(@PathParam("id") Long id, Tarjeta tarjeta) throws Exception {
+
+		Tarjeta	trj =  this.service.buscarPorId(id);
+
+		if (Objects.isNull(trj.getIdTarjeta())) {
+			throw new WebApplicationException("Tarjeta no encontrada, error al intentar eliminar la tarjeta", Response.Status.NOT_FOUND);
+		}
+
+		this.service.eliminar(id, tarjeta);
+
+		return Response.ok(trj).build();
+
+	}
 
 
 }

@@ -4,11 +4,13 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -27,16 +29,11 @@ public class CuentaBancaria {
 	private Integer nmCuenta;
 
 	/**
-	 * tarjeta asociada a la cuenta principal
+	 * tarjeta asociada a la cuenta principal o secundaria { S - N }
 	 */
-	@Column(name="TJ_ASOC_PRINCIPAL")
-	private String tjAsocPrincipal;
+	@Column(name="CUENTA_PRINCIPAL")
+	private String cuentaPrincipal;
 
-	/**
-	 * tarjeta asociada a la cuenta secundaria
-	 */
-	@Column(name="TJ_ASOC_SECUNDARIA")
-	private String tjAsocSecundaria;
 
 	/**
 	 *ID que identifica si es el de pago crédito
@@ -58,6 +55,13 @@ public class CuentaBancaria {
 	@ManyToOne
 	@JoinColumn(name ="ID_CLIENTE")
 	private Cliente cliente;
+
+
+	@ManyToOne
+	@OneToMany
+	@JoinColumn(name="id_tarjeta", nullable = false, foreignKey = @ForeignKey(name="FK_tarjeta_cuenta"))
+	private Tarjeta tarjeta;
+
 
 	@Column(name="FC_ALTA_FILA")
 	private LocalDateTime fcAltaFila;
@@ -101,33 +105,7 @@ public class CuentaBancaria {
 		this.nmCuenta = nmCuenta;
 	}
 
-	/**
-	 * @return the tjAsocPrincipal
-	 */
-	public String getTjAsocPrincipal() {
-		return this.tjAsocPrincipal;
-	}
 
-	/**
-	 * @param tjAsocPrincipal the tjAsocPrincipal to set
-	 */
-	public void setTjAsocPrincipal(String tjAsocPrincipal) {
-		this.tjAsocPrincipal = tjAsocPrincipal;
-	}
-
-	/**
-	 * @return the tjAsocSecundaria
-	 */
-	public String getTjAsocSecundaria() {
-		return this.tjAsocSecundaria;
-	}
-
-	/**
-	 * @param tjAsocSecundaria the tjAsocSecundaria to set
-	 */
-	public void setTjAsocSecundaria(String tjAsocSecundaria) {
-		this.tjAsocSecundaria = tjAsocSecundaria;
-	}
 
 	/**
 	 * @return the pagoCredito
@@ -199,49 +177,6 @@ public class CuentaBancaria {
 		this.fcBajaFila = fcBajaFila;
 	}
 
-
-
-
-
-
-	@Override
-	public String toString() {
-		return "CuentaBancaria [idCuenta=" + this.idCuenta + ", nmCuenta=" + this.nmCuenta + ", tjAsocPrincipal="
-				+ this.tjAsocPrincipal + ", tjAsocSecundaria=" + this.tjAsocSecundaria + ", pagoCredito=" + this.pagoCredito
-				+ ", operaciones=" + this.operaciones + ", cliente=" + this.cliente + ", fcAltaFila=" + this.fcAltaFila
-				+ ", fcModifFila=" + this.fcModifFila + ", fcBajaFila=" + this.fcBajaFila + "]";
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((this.idCuenta == null) ? 0 : this.idCuenta.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (this.getClass() != obj.getClass()) {
-			return false;
-		}
-		CuentaBancaria other = (CuentaBancaria) obj;
-		if (this.idCuenta == null) {
-			if (other.idCuenta != null) {
-				return false;
-			}
-		} else if (!this.idCuenta.equals(other.idCuenta)) {
-			return false;
-		}
-		return true;
-	}
-
 	/**
 	 * @return the cliente
 	 */
@@ -254,6 +189,34 @@ public class CuentaBancaria {
 	 */
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	/**
+	 * @return the cuentaPrincipal
+	 */
+	public String getCuentaPrincipal() {
+		return this.cuentaPrincipal;
+	}
+
+	/**
+	 * @param cuentaPrincipal the cuentaPrincipal to set
+	 */
+	public void setCuentaPrincipal(String cuentaPrincipal) {
+		this.cuentaPrincipal = cuentaPrincipal;
+	}
+
+	/**
+	 * @return the tarjeta
+	 */
+	public Tarjeta getTarjeta() {
+		return this.tarjeta;
+	}
+
+	/**
+	 * @param tarjeta the tarjeta to set
+	 */
+	public void setTarjeta(Tarjeta tarjeta) {
+		this.tarjeta = tarjeta;
 	}
 
 
