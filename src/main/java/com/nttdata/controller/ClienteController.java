@@ -10,6 +10,7 @@ import com.nttdata.services.ClienteService;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
@@ -24,6 +25,9 @@ import jakarta.ws.rs.core.Response;
 @Produces(MediaType.APPLICATION_JSON)
 public class ClienteController {
 
+	/**
+	 * service cliente
+	 */
 	@Inject
 	private ClienteService service;
 
@@ -39,7 +43,12 @@ public class ClienteController {
 
 		return Response.ok(lstClientes).build();
 	}
-
+	/**
+	 * método para buscar por id
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
 
 	@GET
 	@Path("{id}")
@@ -71,7 +80,13 @@ public class ClienteController {
 		return  Response.status(Response.Status.CREATED).build();
 	}
 
-
+	/**
+	 * método para actualizar
+	 * @param id
+	 * @param cliente
+	 * @return
+	 * @throws Exception
+	 */
 
 	@PUT
 	@Transactional
@@ -91,8 +106,30 @@ public class ClienteController {
 		return Response.ok(clie).build();
 	}
 
+	/**
+	 * método para eliminar de forma lógica
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
 
+	@DELETE
+	@Transactional
+	@Path("/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response eliminarCliente(@PathParam("id") Long id, Cliente cliente) throws Exception {
 
+		Cliente clie =  this.service.buscarPorId(id);
+
+		if (Objects.isNull(clie.getIdCliente())) {
+			throw new WebApplicationException("Cliente no encontrado, error al intentar modificar el cliente", Response.Status.NOT_FOUND);
+		}
+
+		this.service.eliminar(id, cliente);
+
+		return Response.ok(clie).build();
+
+	}
 
 
 }

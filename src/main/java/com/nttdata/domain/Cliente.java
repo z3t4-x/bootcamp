@@ -1,6 +1,7 @@
 package com.nttdata.domain;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -84,7 +85,21 @@ public class Cliente {
 	private CatalogosValores tipoCliente;
 
 
-
+	/**
+	 * fecha de alta de registro
+	 */
+	@Column(name="FC_ALTA_FILA")
+	private LocalDateTime fcAltaFila;
+	/**
+	 * fecha de modificacion
+	 */
+	@Column(name="FC_MODIF_FILA")
+	private LocalDateTime fcModifFila;
+	/**
+	 * fecha de baja
+	 */
+	@Column(name="FC_BAJA_FILA")
+	private LocalDateTime fcBajaFila;
 
 	public Cliente() {
 
@@ -224,13 +239,67 @@ public class Cliente {
 	public void setTipoCliente(CatalogosValores tipoCliente) {
 		this.tipoCliente = tipoCliente;
 	}
+
+
+	/**
+	 * @return the fcAltaFila
+	 */
+	public LocalDateTime getFcAltaFila() {
+		return this.fcAltaFila;
+	}
+
+
+	/**
+	 * @param fcAltaFila the fcAltaFila to set
+	 */
+	public void setFcAltaFila(LocalDateTime fcAltaFila) {
+		this.fcAltaFila = fcAltaFila;
+	}
+
+
+	/**
+	 * @return the fcModifFila
+	 */
+	public LocalDateTime getFcModifFila() {
+		return this.fcModifFila;
+	}
+
+
+	/**
+	 * @param fcModifFila the fcModifFila to set
+	 */
+	public void setFcModifFila(LocalDateTime fcModifFila) {
+		this.fcModifFila = fcModifFila;
+	}
+
+
+	/**
+	 * @return the fcBajaFila
+	 */
+	public LocalDateTime getFcBajaFila() {
+		return this.fcBajaFila;
+	}
+
+
+	/**
+	 * @param fcBajaFila the fcBajaFila to set
+	 */
+	public void setFcBajaFila(LocalDateTime fcBajaFila) {
+		this.fcBajaFila = fcBajaFila;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "Cliente [idCliente=" + this.idCliente + ", dni=" + this.dni + ", nombre=" + this.nombre + ", apellido1=" + this.apellido1
 				+ ", apellido2=" + this.apellido2 + ", telefono=" + this.telefono + ", correo=" + this.correo + ", fcNacimiento="
 				+ this.fcNacimiento + ", razonSocial=" + this.razonSocial + ", ruc=" + this.ruc + ", direccion=" + this.direccion
-				+ ", tipoCliente=" + this.tipoCliente + "]";
+				+ ", tipoCliente=" + this.tipoCliente + ", fcAltaFila=" + this.fcAltaFila + ", fcModifFila=" + this.fcModifFila
+				+ ", fcBajaFila=" + this.fcBajaFila + "]";
 	}
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

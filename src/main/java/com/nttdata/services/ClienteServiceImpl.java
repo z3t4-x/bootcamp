@@ -1,5 +1,6 @@
 package com.nttdata.services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,6 +11,8 @@ import com.nttdata.utils.Constantes;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import jakarta.ws.rs.WebApplicationException;
+import jakarta.ws.rs.core.Response;
 
 @ApplicationScoped
 public class ClienteServiceImpl implements ClienteService{
@@ -100,7 +103,12 @@ public class ClienteServiceImpl implements ClienteService{
 	@Override
 	public List<Cliente> listarCliente() throws Exception {
 
-		return this.dao.findAll().list();
+		List<Cliente> lstClientes  = this.dao.findAll().list();
+		// lista clientes que no estan dado de baja
+		if(!lstClientes.isEmpty()) {
+			lstClientes = lstClientes.stream().filter(c  -> c.getFcBajaFila()==null).toList();
+		}
+		return lstClientes;
 	}
 	/**
 	 *
@@ -109,6 +117,25 @@ public class ClienteServiceImpl implements ClienteService{
 	public Cliente buscarPorId(Long id) throws Exception {
 
 		return this.dao.findByIdOptional(id).orElse(null);
+	}
+
+	/**
+	 *
+	 */
+	@Override
+	public void eliminar(Long id, Cliente cliente) throws Exception {
+
+		Cliente cli = this.dao.findById(id);
+
+		if (Objects.isNull(cli.getIdCliente())) {
+			throw new WebApplicationException("Cliente no encontrado, error al intentar eliminar el cliente", Response.Status.NOT_FOUND);
+		}
+
+		LocalDateTime fcBajaActual =  LocalDateTime.now();
+
+		cli.setFcBajaFila(fcBajaActual);
+		this.dao.persist(cli);
+
 	}
 
 

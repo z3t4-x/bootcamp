@@ -15,7 +15,9 @@ import jakarta.persistence.Table;
 @Table(name="TARJETA")
 public class Tarjeta {
 
-
+	/**
+	 * id tarjeta
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private  Long idTarjeta;

@@ -52,7 +52,9 @@ public class CuentaBancaria {
 	@JoinColumn(name ="ID_OPERACION")
 	private CatalogosValores operaciones;
 
-
+	/**
+	 * id cliente
+	 */
 	@ManyToOne
 	@JoinColumn(name ="ID_CLIENTE")
 	private Cliente cliente;
@@ -65,13 +67,19 @@ public class CuentaBancaria {
 	@JoinColumn(name ="ID_TARJETA")
 	private Tarjeta tarjeta;
 
-
+	/**
+	 * fecha de alta de registro
+	 */
 	@Column(name="FC_ALTA_FILA")
 	private LocalDateTime fcAltaFila;
-
+	/**
+	 * fecha de modificacion
+	 */
 	@Column(name="FC_MODIF_FILA")
 	private LocalDateTime fcModifFila;
-
+	/**
+	 * fecha de baja
+	 */
 	@Column(name="FC_BAJA_FILA")
 	private LocalDateTime fcBajaFila;
 

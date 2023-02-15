@@ -34,6 +34,13 @@ public interface ClienteService {
 	 */
 	Cliente buscarPorId(Long id) throws Exception;
 
+	/**
+	 * eliminar de forma lógica
+	 * @param id
+	 *
+	 * @throws Exception
+	 */
+	public void  eliminar(Long id, Cliente cliente) throws Exception;
 
 
 

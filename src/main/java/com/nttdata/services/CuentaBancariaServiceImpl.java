@@ -78,6 +78,8 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 	@Override
 	public List<CuentaBancaria> listarCuentaBancaria() throws Exception {
 
+
+
 		return this.dao.findAll().list();
 	}
 
