@@ -114,7 +114,7 @@ public class TarjetaController {
 	@Transactional
 	@Path("/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response eliminarCliente(@PathParam("id") Long id, Tarjeta tarjeta) throws Exception {
+	public Response eliminar(@PathParam("id") Long id, Tarjeta tarjeta) throws Exception {
 
 		Tarjeta	trj =  this.service.buscarPorId(id);
 

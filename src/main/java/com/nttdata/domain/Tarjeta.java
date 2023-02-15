@@ -2,9 +2,7 @@ package com.nttdata.domain;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,7 +10,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -73,8 +70,10 @@ public class Tarjeta {
 	private CatalogosValores tipoTarjeta;
 
 
-	@OneToMany(mappedBy = "tarjeta", cascade = {CascadeType.ALL}, orphanRemoval = true)
-	private List<CuentaBancaria> lstCuentaBancaria;
+	//	@OneToMany(mappedBy = "tarjeta",
+	//			cascade = {CascadeType.ALL},
+	//			orphanRemoval = true)
+	//	private List<CuentaBancaria> lstCuentaBancaria;
 
 
 
@@ -281,16 +280,16 @@ public class Tarjeta {
 	/**
 	 * @return the lstCuentaBancaria
 	 */
-	public List<CuentaBancaria> getLstCuentaBancaria() {
-		return this.lstCuentaBancaria;
-	}
-
-	/**
-	 * @param lstCuentaBancaria the lstCuentaBancaria to set
-	 */
-	public void setLstCuentaBancaria(List<CuentaBancaria> lstCuentaBancaria) {
-		this.lstCuentaBancaria = lstCuentaBancaria;
-	}
+	//	public List<CuentaBancaria> getLstCuentaBancaria() {
+	//		return this.lstCuentaBancaria;
+	//	}
+	//
+	//	/**
+	//	 * @param lstCuentaBancaria the lstCuentaBancaria to set
+	//	 */
+	//	public void setLstCuentaBancaria(List<CuentaBancaria> lstCuentaBancaria) {
+	//		this.lstCuentaBancaria = lstCuentaBancaria;
+	//	}
 
 	/**
 	 * @return the fcAltaFila
@@ -339,10 +338,20 @@ public class Tarjeta {
 		return "Tarjeta [idTarjeta=" + this.idTarjeta + ", nmTarjeta=" + this.nmTarjeta + ", cdPin=" + this.cdPin + ", fcVencimiento="
 				+ this.fcVencimiento + ", cdValidacion=" + this.cdValidacion + ", fcCorte=" + this.fcCorte + ", fcVencimientoMensual="
 				+ this.fcVencimientoMensual + ", saldoActual=" + this.saldoActual + ", limiteCredito=" + this.limiteCredito
-				+ ", tipoTarjeta=" + this.tipoTarjeta + ", lstCuentaBancaria=" + this.lstCuentaBancaria + ", saldoInicial="
-				+ this.saldoInicial + ", saldoDisponible=" + this.saldoDisponible + ", fcAltaFila=" + this.fcAltaFila
-				+ ", fcModifFila=" + this.fcModifFila + ", fcBajaFila=" + this.fcBajaFila + "]";
+				+ ", tipoTarjeta=" + this.tipoTarjeta + ", saldoInicial=" + this.saldoInicial + ", saldoDisponible="
+				+ this.saldoDisponible + ", fcAltaFila=" + this.fcAltaFila + ", fcModifFila=" + this.fcModifFila + ", fcBajaFila="
+				+ this.fcBajaFila + "]";
 	}
+
+	//	@Override
+	//	public String toString() {
+	//		return "Tarjeta [idTarjeta=" + this.idTarjeta + ", nmTarjeta=" + this.nmTarjeta + ", cdPin=" + this.cdPin + ", fcVencimiento="
+	//				+ this.fcVencimiento + ", cdValidacion=" + this.cdValidacion + ", fcCorte=" + this.fcCorte + ", fcVencimientoMensual="
+	//				+ this.fcVencimientoMensual + ", saldoActual=" + this.saldoActual + ", limiteCredito=" + this.limiteCredito
+	//				+ ", tipoTarjeta=" + this.tipoTarjeta + ", lstCuentaBancaria=" + this.lstCuentaBancaria + ", saldoInicial="
+	//				+ this.saldoInicial + ", saldoDisponible=" + this.saldoDisponible + ", fcAltaFila=" + this.fcAltaFila
+	//				+ ", fcModifFila=" + this.fcModifFila + ", fcBajaFila=" + this.fcBajaFila + "]";
+	//	}
 
 
 

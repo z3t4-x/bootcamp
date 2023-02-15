@@ -6,8 +6,10 @@ import java.util.Objects;
 
 import org.hibernate.service.spi.ServiceException;
 
+import com.nttdata.dao.ClienteDAO;
 import com.nttdata.dao.CuentaBancariaDAO;
 import com.nttdata.dao.TarjetaDAO;
+import com.nttdata.domain.Cliente;
 import com.nttdata.domain.CuentaBancaria;
 import com.nttdata.domain.Tarjeta;
 import com.nttdata.utils.Constantes;
@@ -23,6 +25,10 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 	@Inject
 	private CuentaBancariaDAO dao;
 
+
+	@Inject
+	private ClienteDAO clienteDAO;
+
 	@Inject
 	private TarjetaDAO tarjetaDAO;
 	/**
@@ -34,8 +40,18 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 
 		LocalDateTime fcActual = LocalDateTime.now();
 
+		// valida si existe una cuenta principal
+		if(Boolean.TRUE.equals(this.existeCuentaPrincipal(cuentaBancaria))) {
+
+			cuentaBancaria.setFcAltaFila(fcActual);
+			cuentaBancaria.setCuentaPrincipal(Constantes.Afimarcion.AFIRMACION_N);
+			this.dao.persist(cuentaBancaria);
+		}
+
 		cuentaBancaria.setFcAltaFila(fcActual);
 		cuentaBancaria.setCuentaPrincipal(Constantes.Afimarcion.AFIRMACION_S);
+
+
 
 		this.dao.persist(cuentaBancaria);
 
@@ -56,11 +72,22 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 		LocalDateTime fcActual = LocalDateTime.now();
 
 
+		if(Boolean.TRUE.equals(this.existeCuentaPrincipal(cuentaBancaria))
+				&& Boolean.TRUE.equals(this.retiraMonto(cuentaBancaria))) {
+
+			this.dao.persist(ctBancaria);
+		}
+
 		ctBancaria.setPagoCredito(cuentaBancaria.getPagoCredito());
 		ctBancaria.setOperaciones(cuentaBancaria.getOperaciones());
 		ctBancaria.setNmCuenta(cuentaBancaria.getNmCuenta());
-
 		ctBancaria.setFcModifFila(fcActual);
+
+
+
+
+
+
 		this.dao.persist(ctBancaria);
 
 
@@ -111,9 +138,7 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 	private Boolean retiraMonto( CuentaBancaria cuentaBancaria) {
 
 		// PENDIENTE
-		Tarjeta tarjeta = this.tarjetaDAO.findById(1L);
-
-
+		Tarjeta tarjeta = this.tarjetaDAO.findById(cuentaBancaria.getTarjeta().getIdTarjeta());
 
 		Boolean puedeRetirar = Boolean.FALSE;
 
@@ -155,5 +180,41 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 		return puedeRetirar;
 
 	}
+
+
+	/**
+	 * método si existe cuenta bancaria principal
+	 */
+
+	private Boolean existeCuentaPrincipal(CuentaBancaria cuentaBancaria) {
+
+		Boolean existe = Boolean.FALSE;
+
+		List<CuentaBancaria> lstCuentaBancaria =  this.dao.findAll().list();
+
+		CuentaBancaria ctaBancaria = this.dao.findById(cuentaBancaria.getIdCuenta());
+
+		Tarjeta tarjeta =	this.tarjetaDAO.findById(cuentaBancaria.getTarjeta().getIdTarjeta());
+
+		Cliente cliente = this.clienteDAO.findById(cuentaBancaria.getCliente().getIdCliente());
+
+		// se recorre la lista de la cuenta bancaria y se valida que si
+		//existe una cuenta, cliente, tarjeta y si tiene cuenta principal
+
+		if(!lstCuentaBancaria.isEmpty()) {
+
+			lstCuentaBancaria.
+			stream().filter(c -> c.getCliente().getIdCliente().equals(cliente.getIdCliente()) &&
+					c.getTarjeta().getIdTarjeta().equals(tarjeta.getIdTarjeta())  &&
+					c.getIdCuenta().equals(ctaBancaria.getIdCuenta())&&
+					c.getCuentaPrincipal().equals(Constantes.Afimarcion.AFIRMACION_S)).toList();
+
+			existe = Boolean.TRUE;
+		}
+
+		return existe;
+
+	}
+
 
 }
