@@ -2,6 +2,7 @@ package com.nttdata.domain;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -59,7 +60,7 @@ public class CuentaBancaria {
 	//	@OneToMany
 	//	@JoinColumn(name = "id_tarjeta", nullable = false,
 	//	foreignKey = @ForeignKey(name="fk_tarjeta_cuenta"))
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name ="ID_TARJETA")
 	private Tarjeta tarjeta;
 

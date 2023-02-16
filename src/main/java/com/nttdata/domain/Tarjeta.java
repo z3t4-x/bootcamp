@@ -120,6 +120,10 @@ public class Tarjeta {
 
 
 
+	@Column(name="TARJETA_ACTIVA")
+	private String tarjetaActiva;
+
+
 	/**
 	 * @return the saldoDisponible
 	 */
@@ -333,6 +337,20 @@ public class Tarjeta {
 	 */
 	public void setFcBajaFila(LocalDateTime fcBajaFila) {
 		this.fcBajaFila = fcBajaFila;
+	}
+
+	/**
+	 * @return the tarjetaActiva
+	 */
+	public String getTarjetaActiva() {
+		return this.tarjetaActiva;
+	}
+
+	/**
+	 * @param tarjetaActiva the tarjetaActiva to set
+	 */
+	public void setTarjetaActiva(String tarjetaActiva) {
+		this.tarjetaActiva = tarjetaActiva;
 	}
 
 

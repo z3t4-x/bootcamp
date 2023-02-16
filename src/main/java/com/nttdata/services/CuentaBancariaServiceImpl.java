@@ -84,11 +84,6 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 		ctBancaria.setNmCuenta(cuentaBancaria.getNmCuenta());
 		ctBancaria.setFcModifFila(fcActual);
 
-
-
-
-
-
 		this.dao.persist(ctBancaria);
 
 
@@ -112,19 +107,11 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 	 */
 	@Override
 	public void eliminar(Long id) throws Exception {
-		/*
-		CuentaBancaria cuentaBancaria = new CuentaBancaria();
-
-		if(Objects.nonNull(id)) {
-			LocalDateTime fcBaja =  LocalDateTime.now();
-			cuentaBancaria.setFcBajaFila(fcBaja);}
-
-		this.dao.persist(cuentaBancaria);*/
 
 		CuentaBancaria cli = this.dao.findById(id);
 
 		if (Objects.isNull(cli.getIdCuenta())) {
-			throw new WebApplicationException("CuentaBancaria no encontrado, error al intentar eliminar el cliente", Response.Status.NOT_FOUND);
+			throw new WebApplicationException("Cuenta Bancaria no encontrado, error al intentar eliminar. ", Response.Status.NOT_FOUND);
 		}
 
 		LocalDateTime fcBajaActual =  LocalDateTime.now();
@@ -149,7 +136,6 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 
 	private Boolean retiraMonto( CuentaBancaria cuentaBancaria) {
 
-		// PENDIENTE
 		Tarjeta tarjeta = this.tarjetaDAO.findById(cuentaBancaria.getTarjeta().getIdTarjeta());
 
 		Boolean puedeRetirar = Boolean.FALSE;
