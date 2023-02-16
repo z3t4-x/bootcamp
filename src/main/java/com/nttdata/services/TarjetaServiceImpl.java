@@ -106,7 +106,6 @@ public class TarjetaServiceImpl implements TarjetaService{
 
 			lstCtaBancaria= lstCtaBancaria.stream().filter(cuenta -> cuenta.getTarjeta().getIdTarjeta().equals(tarjet.getIdTarjeta())).toList();
 
-
 			for (CuentaBancaria cuentaBancaria : lstCtaBancaria) {
 
 				cuentaBancaria.setFcBajaFila(fcBajaActual);
