@@ -112,7 +112,7 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 	 */
 	@Override
 	public void eliminar(Long id) throws Exception {
-/* 
+		/*
 		CuentaBancaria cuentaBancaria = new CuentaBancaria();
 
 		if(Objects.nonNull(id)) {
@@ -226,6 +226,13 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 
 		return existe;
 
+	}
+	@Override
+	public CuentaBancaria registrarTransaccional(CuentaBancaria cuentaBancaria) throws Exception {
+
+
+
+		return null;
 	}
 
 

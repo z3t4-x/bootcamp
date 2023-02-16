@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -25,7 +24,7 @@ public class CuentaBancaria {
 	 * id de operaciones
 	 */
 	@Column(name="NM_CUENTA")
-	private Integer nmCuenta;
+	private String nmCuenta;
 
 	/**
 	 * tarjeta asociada a la cuenta principal o secundaria { S - N }
@@ -55,13 +54,12 @@ public class CuentaBancaria {
 	@JoinColumn(name ="ID_CLIENTE")
 	private Cliente cliente;
 
-
+	//	@JsonIgnore
 	//	@ManyToOne
 	//	@OneToMany
-	//	@JoinColumn(name="id_tarjeta", nullable = false,
-	//	foreignKey = @ForeignKey(name="FK_tarjeta_cuenta"))
-
-	@ManyToOne(fetch = FetchType.LAZY)
+	//	@JoinColumn(name = "id_tarjeta", nullable = false,
+	//	foreignKey = @ForeignKey(name="fk_tarjeta_cuenta"))
+	@ManyToOne
 	@JoinColumn(name ="ID_TARJETA")
 	private Tarjeta tarjeta;
 
@@ -94,21 +92,22 @@ public class CuentaBancaria {
 		this.idCuenta = idCuenta;
 	}
 
+
+
+
 	/**
 	 * @return the nmCuenta
 	 */
-	public Integer getNmCuenta() {
+	public String getNmCuenta() {
 		return this.nmCuenta;
 	}
 
 	/**
 	 * @param nmCuenta the nmCuenta to set
 	 */
-	public void setNmCuenta(Integer nmCuenta) {
+	public void setNmCuenta(String nmCuenta) {
 		this.nmCuenta = nmCuenta;
 	}
-
-
 
 	/**
 	 * @return the pagoCredito
@@ -221,6 +220,7 @@ public class CuentaBancaria {
 	public void setTarjeta(Tarjeta tarjeta) {
 		this.tarjeta = tarjeta;
 	}
+
 
 
 

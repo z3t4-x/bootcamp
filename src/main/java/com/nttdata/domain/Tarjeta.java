@@ -77,6 +77,20 @@ public class Tarjeta {
 
 
 
+	//	/**
+	//	 * @return the lstCuentaBancaria
+	//	 */
+	//	public List<CuentaBancaria> getLstCuentaBancaria() {
+	//		return this.lstCuentaBancaria;
+	//	}
+	//
+	//	/**
+	//	 * @param lstCuentaBancaria the lstCuentaBancaria to set
+	//	 */
+	//	public void setLstCuentaBancaria(List<CuentaBancaria> lstCuentaBancaria) {
+	//		this.lstCuentaBancaria = lstCuentaBancaria;
+	//	}
+
 	/**
 	 * saldo de la tarjeta crédito
 	 */
@@ -277,19 +291,7 @@ public class Tarjeta {
 		this.saldoInicial = saldoInicial;
 	}
 
-	/**
-	 * @return the lstCuentaBancaria
-	 */
-	//	public List<CuentaBancaria> getLstCuentaBancaria() {
-	//		return this.lstCuentaBancaria;
-	//	}
-	//
-	//	/**
-	//	 * @param lstCuentaBancaria the lstCuentaBancaria to set
-	//	 */
-	//	public void setLstCuentaBancaria(List<CuentaBancaria> lstCuentaBancaria) {
-	//		this.lstCuentaBancaria = lstCuentaBancaria;
-	//	}
+
 
 	/**
 	 * @return the fcAltaFila
@@ -333,25 +335,7 @@ public class Tarjeta {
 		this.fcBajaFila = fcBajaFila;
 	}
 
-	@Override
-	public String toString() {
-		return "Tarjeta [idTarjeta=" + this.idTarjeta + ", nmTarjeta=" + this.nmTarjeta + ", cdPin=" + this.cdPin + ", fcVencimiento="
-				+ this.fcVencimiento + ", cdValidacion=" + this.cdValidacion + ", fcCorte=" + this.fcCorte + ", fcVencimientoMensual="
-				+ this.fcVencimientoMensual + ", saldoActual=" + this.saldoActual + ", limiteCredito=" + this.limiteCredito
-				+ ", tipoTarjeta=" + this.tipoTarjeta + ", saldoInicial=" + this.saldoInicial + ", saldoDisponible="
-				+ this.saldoDisponible + ", fcAltaFila=" + this.fcAltaFila + ", fcModifFila=" + this.fcModifFila + ", fcBajaFila="
-				+ this.fcBajaFila + "]";
-	}
 
-	//	@Override
-	//	public String toString() {
-	//		return "Tarjeta [idTarjeta=" + this.idTarjeta + ", nmTarjeta=" + this.nmTarjeta + ", cdPin=" + this.cdPin + ", fcVencimiento="
-	//				+ this.fcVencimiento + ", cdValidacion=" + this.cdValidacion + ", fcCorte=" + this.fcCorte + ", fcVencimientoMensual="
-	//				+ this.fcVencimientoMensual + ", saldoActual=" + this.saldoActual + ", limiteCredito=" + this.limiteCredito
-	//				+ ", tipoTarjeta=" + this.tipoTarjeta + ", lstCuentaBancaria=" + this.lstCuentaBancaria + ", saldoInicial="
-	//				+ this.saldoInicial + ", saldoDisponible=" + this.saldoDisponible + ", fcAltaFila=" + this.fcAltaFila
-	//				+ ", fcModifFila=" + this.fcModifFila + ", fcBajaFila=" + this.fcBajaFila + "]";
-	//	}
 
 
 

@@ -45,4 +45,12 @@ public interface CuentaBancariaService {
 	 */
 	void eliminar(Long id) throws Exception;
 
+	/**
+	 *registrar
+	 * @param cuentaBancaria
+	 * @return
+	 * @throws Exception
+	 */
+	CuentaBancaria registrarTransaccional(CuentaBancaria cuentaBancaria)throws Exception;
+
 }
