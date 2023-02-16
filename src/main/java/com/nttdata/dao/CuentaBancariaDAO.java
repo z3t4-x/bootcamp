@@ -17,5 +17,4 @@ public class CuentaBancariaDAO implements PanacheRepository<CuentaBancaria>{
     return find("nmCuenta", nmCuenta).firstResult();
    } 
 
- 
 }
