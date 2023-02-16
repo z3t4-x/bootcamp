@@ -227,13 +227,7 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 		return existe;
 
 	}
-	@Override
-	public CuentaBancaria registrarTransaccional(CuentaBancaria cuentaBancaria) throws Exception {
 
-
-
-		return null;
-	}
 
 
 }
