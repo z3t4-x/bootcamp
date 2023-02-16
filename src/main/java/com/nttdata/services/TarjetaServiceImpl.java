@@ -122,32 +122,46 @@ public class TarjetaServiceImpl implements TarjetaService{
 
 	}
 
-	@Override
-	public CuentaBancaria  consultas(String numTarjeta, String numCuenta) throws Exception{
+	
+	private CuentaBancaria  consultas(Long numTarjeta, Long numCuenta) throws Exception{
+		CuentaBancaria cuentaBancaria = new CuentaBancaria();
 		if(numCuenta!=null && numTarjeta!=null) {
-			CuentaBancaria cuenta= cuentaBancariaDAO.findByNmCuenta(numCuenta);
+			
+			CuentaBancaria cuenta= this.cuentaBancariaDAO.findByIdOptional(numCuenta).orElse(null);
+			
 			if(cuenta!=null){
-				if(cuenta.getTarjeta().getNmTarjeta().equals(numTarjeta)){
-					return cuenta;
+				if(cuenta.getTarjeta().getIdTarjeta()==numTarjeta){
+					
+					cuentaBancaria = cuenta;
+					
 				}else{
 					throw new WebApplicationException("La cuenta bancaria no esta asignada al numero de tarjeta ingressado. ", Response.Status.NOT_FOUND);
 				}
 			}else{
 				throw new WebApplicationException("Numero de cuenta no encontrado. Es posible que no exista", Response.Status.NOT_FOUND);
 			} 
-	
+			
 		} 
-		return null;
+		
+		return cuentaBancaria;
 	}
 
-	@Override
-	public CuentaBancaria  deposito(String numTarjeta, String numCuenta, Long deposito) throws Exception{
+	
+	private void  deposito(Long numTarjeta, Long numCuenta, Double deposito) throws Exception{
+		
+		
 		if(numCuenta!=null && numTarjeta!=null) {
-			CuentaBancaria cuenta= cuentaBancariaDAO.findByNmCuenta(numCuenta);
+		
+			CuentaBancaria cuenta= this.cuentaBancariaDAO.findByIdOptional(numCuenta).orElse(null);
 			if(cuenta!=null){
-				if(cuenta.getTarjeta().getNmTarjeta().equals(numTarjeta)){
-					//Aqui se deberia actualizar el Saldo de la cuenta de Debito 
-					//FAlta el cambo Saldo  
+				
+				if(cuenta.getTarjeta().getIdTarjeta()==numTarjeta){
+					Tarjeta tarjeta = dao.findById(numTarjeta);
+					Double saldoActual= tarjeta.getSaldoActual();
+					saldoActual = saldoActual + deposito;
+					
+					tarjeta.setSaldoActual(saldoActual);
+					registrar( tarjeta);
 					
 				}else{
 					throw new WebApplicationException("La cuenta bancaria no esta asignada al numero de tarjeta ingressado. ", Response.Status.NOT_FOUND);
@@ -157,8 +171,23 @@ public class TarjetaServiceImpl implements TarjetaService{
 			} 
 	
 		} 
-		return null;
 	}
 	
-		
+	
+
+	@Override
+	public CuentaBancaria operaciones(Long numTarjeta, Long numCuenta, Double deposito,  String opcionOperacion) throws Exception {
+		CuentaBancaria cuenta = new CuentaBancaria();
+		switch (opcionOperacion) {
+			case "1" -> {
+				cuenta = consultas( numTarjeta,  numCuenta);
+			}
+			case "2" -> {
+				deposito( numTarjeta,  numCuenta,  deposito);
+			}
+			
+			default -> System.out.println("El tipo de Operación no es correcta.");
+		}
+		return cuenta;
+	}
 }

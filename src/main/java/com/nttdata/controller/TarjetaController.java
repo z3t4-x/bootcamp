@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+import com.nttdata.domain.CuentaBancaria;
 import com.nttdata.domain.Tarjeta;
 import com.nttdata.services.TarjetaService;
+import com.nttdata.utils.OperacionesUtil;
 
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -128,5 +130,16 @@ public class TarjetaController {
 
 	}
 
+	
+//String numTarjeta, String numCuenta, Double deposito, String opcionOperacion
+	@PUT
+	@Transactional
+	@Path("/operaciones")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response operacion(OperacionesUtil operacion) throws Exception {
 
+		
+		CuentaBancaria res =this.service.operaciones(operacion.getIdTarjeta(), operacion.getIdCuenta(), operacion.getDeposito(), operacion.getOpcionOperacion());
+		return Response.ok(res).build();
+	}
 }

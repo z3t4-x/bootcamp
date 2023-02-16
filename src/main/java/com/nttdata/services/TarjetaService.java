@@ -44,19 +44,13 @@ public interface TarjetaService {
 	 */
 	public void  eliminar(Long id, Tarjeta tarjeta) throws Exception;
 	
+	
 	/**
-	 * Consultar datos de cuenta, ya sea principal o secundaria  
-	 * @param id
+	 * deposito en cuenta / Consultar datos de cuenta,  (principal o secundaria)
+	 * @param numTarjeta numCuenta deposito(opc)
 	 *
 	 * @throws Exception
 	 */
-	public CuentaBancaria  consultas(String numTarjeta, String numCuenta) throws Exception;
-	/**
-	 * deposito en cuenta (principal o secundaria)
-	 * @param id
-	 *
-	 * @throws Exception
-	 */
-	public CuentaBancaria  deposito(String numTarjeta, String numCuenta, Long deposito) throws Exception;
+	public CuentaBancaria  operaciones(Long numTarjeta, Long numCuenta, Double deposito, String opcionOperacion) throws Exception;
 
 }
