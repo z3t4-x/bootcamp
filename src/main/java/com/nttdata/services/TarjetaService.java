@@ -2,6 +2,7 @@ package com.nttdata.services;
 
 import java.util.List;
 
+import com.nttdata.domain.CuentaBancaria;
 import com.nttdata.domain.Tarjeta;
 
 public interface TarjetaService {
@@ -42,6 +43,20 @@ public interface TarjetaService {
 	 * @throws Exception
 	 */
 	public void  eliminar(Long id, Tarjeta tarjeta) throws Exception;
-
+	
+	/**
+	 * Consultar datos de cuenta, ya sea principal o secundaria  
+	 * @param id
+	 *
+	 * @throws Exception
+	 */
+	public CuentaBancaria  consultas(String numTarjeta, String numCuenta) throws Exception;
+	/**
+	 * deposito en cuenta (principal o secundaria)
+	 * @param id
+	 *
+	 * @throws Exception
+	 */
+	public CuentaBancaria  deposito(String numTarjeta, String numCuenta, Long deposito) throws Exception;
 
 }
