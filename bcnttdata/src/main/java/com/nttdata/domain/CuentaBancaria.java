@@ -12,70 +12,31 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
-@Entity
-@Table(name="CUENTA_BANCARIA")
-public class CuentaBancaria {
+public class CuentaBancaria extends PanacheMongoEntity {
 
 	/**id de cuenta*/
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ID_CUENTA")
-	private Long idCuenta;
+		private Long idCuenta;
 	/**
 	 * id de operaciones
-	 */
-	@Column(name="NM_CUENTA")
+	 */	
 	private String nmCuenta;
 
 	/**
 	 * tarjeta asociada a la cuenta principal o secundaria { S - N }
 	 */
-	@Column(name="CUENTA_PRINCIPAL")
 	private String cuentaPrincipal;
 
-
-	/**
-	 *ID que identifica si es el de pago crédito
-	 */
-	@ManyToOne
-	@JoinColumn(name ="ID_PAGO_CREDITO")
-	private PagoCredito pagoCredito;
-
-	/**
-	 * identifica el tipo de operación, retiro, depósito
-	 */
-	@ManyToOne
-	@JoinColumn(name ="ID_OPERACION")
-	private CatalogosValores operaciones;
-
-	/**
-	 * id cliente
-	 */
-	@ManyToOne
-	@JoinColumn(name ="ID_CLIENTE")
-	private Cliente cliente;
-
-	//	@JsonIgnore
-	//	@ManyToOne
-	//	@OneToMany
-	//	@JoinColumn(name = "id_tarjeta", nullable = false,
-	//	foreignKey = @ForeignKey(name="fk_tarjeta_cuenta"))
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name ="ID_TARJETA")
-	private Tarjeta tarjeta;
-
-
-	@Column(name="FC_ALTA_FILA")
+	
 	private LocalDateTime fcAltaFila;
 	/**
 	 * fecha de modificacion
 	 */
-	@Column(name="FC_MODIF_FILA")
 	private LocalDateTime fcModifFila;
 	/**
 	 * fecha de baja
 	 */
-	@Column(name="FC_BAJA_FILA")
 	private LocalDateTime fcBajaFila;
 
 
@@ -125,20 +86,6 @@ public class CuentaBancaria {
 	}
 
 	/**
-	 * @return the operaciones
-	 */
-	public CatalogosValores getOperaciones() {
-		return this.operaciones;
-	}
-
-	/**
-	 * @param operaciones the operaciones to set
-	 */
-	public void setOperaciones(CatalogosValores operaciones) {
-		this.operaciones = operaciones;
-	}
-
-	/**
 	 * @return the fcAltaFila
 	 */
 	public LocalDateTime getFcAltaFila() {
@@ -180,19 +127,19 @@ public class CuentaBancaria {
 		this.fcBajaFila = fcBajaFila;
 	}
 
-	/**
-	 * @return the cliente
-	 */
-	public Cliente getCliente() {
-		return this.cliente;
-	}
+	// /**
+	//  * @return the cliente
+	//  */
+	// public Cliente getCliente() {
+	// 	return this.cliente;
+	// }
 
-	/**
-	 * @param cliente the cliente to set
-	 */
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
+	// /**
+	//  * @param cliente the cliente to set
+	//  */
+	// public void setCliente(Cliente cliente) {
+	// 	this.cliente = cliente;
+	// }
 
 	/**
 	 * @return the cuentaPrincipal

@@ -10,60 +10,50 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-@Entity
-@Table(name="PAGO_CREDITO")
-public class PagoCredito {
+
+public class PagoCredito extends PanacheMongoEntity{
 
 
 	/**
 	 * id de tipo de cliente
 	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ID_PAGO_CREDITO")
+	@GeneratedMongoValue(strategy = GenerationType.IDENTITY)
 	private Long idPagoCredito;
 
 	/**
 	 * fecha de inicio de crédito
 	 */
-	@Column(name="FC_INICIO")
 	private LocalDateTime fcInicio;
 
 	/**
 	 * número de cuotas de crédito
 	 */
-	@Column(name="NM_CUOTAS")
 	private Integer nmCuotas;
 
 	/**
 	 * fecha de pago mensual del crédito
 	 */
-	@Column(name="FC_PAGO_MENSUAL")
 	private LocalDate fcPagoMensual;
 
 	/**
 	 * saldo inicial del crédito
 	 */
-	@Column(name="SALDO_INICIAL")
 	private Double saldoInicial;
 
 	/**
 	 * saldo actual del crédito
 	 */
-	@Column(name="SALDO_ACTUAL")
 	private Double saldoActual;
 
-	@Column(name="FC_ALTA_FILA")
 	private LocalDateTime fcAltaFila;
 	/**
 	 * fecha de modificacion
 	 */
-	@Column(name="FC_MODIF_FILA")
 	private LocalDateTime fcModifFila;
 	/**
 	 * fecha de baja
 	 */
-	@Column(name="FC_BAJA_FILA")
 	private LocalDateTime fcBajaFila;
 
 	/**
@@ -72,6 +62,8 @@ public class PagoCredito {
 	public Long getIdPagoCredito() {
 		return this.idPagoCredito;
 	}
+
+	private List<CuentaBancaria> lstCuentaBancaria;
 
 	/**
 	 * @param idPagoCredito the idPagoCredito to set

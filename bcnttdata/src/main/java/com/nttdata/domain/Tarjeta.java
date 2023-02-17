@@ -12,89 +12,52 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
-@Entity
-@Table(name="TARJETA")
-public class Tarjeta {
+
+public class Tarjeta extends PanacheMongoEntity{
 
 	/**
 	 * id tarjeta
 	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private  Long idTarjeta;
 	/**
 	 * numero de tarjeta
 	 */
-	@Column(name="NM_TARJETA")
 	private String nmTarjeta;
 	/**
 	 * código pin
 	 */
-	@Column(name="CD_PIN")
 	private Integer cdPin;
 	/**
 	 * fecha vencimiento
 	 */
-	@Column(name="FC_VENCIMIENTO")
 	private LocalDate fcVencimiento;
 	/**
 	 * codigo validación
 	 */
-	@Column(name="CD_VALIDACION")
 	private Integer cdValidacion;
 	/**
 	 * fecha de corte de tarjeta
 	 */
-	@Column(name="FC_CORTE")
 	private LocalDate fcCorte;
 	/**
 	 * fecha de vencimiento mensual
 	 */
-	@Column(name="FC_VENCIMIENTO_MENSUAL")
 	private LocalDate fcVencimientoMensual;
 	/**
 	 * saldo actual desps del retiro
 	 */
-	@Column(name="SALDO_ACTUAL")
 	private Double saldoActual;
 	/**
 	 * fecha limite de crédito
 	 */
-	@Column(name="LIMITE_CREDITO")
 	private Double limiteCredito;
 	/**
 	 * tipo de tarjeta {débito o crédito}
 	 */
-	@ManyToOne
-	@JoinColumn(name ="ID_TIPO_TARJETA", nullable =  false)
-	private CatalogosValores tipoTarjeta;
 
+	private List<CuentaBancaria> lstCuentaBancaria;
 
-	//	@OneToMany(mappedBy = "tarjeta",
-	//			cascade = {CascadeType.ALL},
-	//			orphanRemoval = true)
-	//	private List<CuentaBancaria> lstCuentaBancaria;
-
-
-
-	//	/**
-	//	 * @return the lstCuentaBancaria
-	//	 */
-	//	public List<CuentaBancaria> getLstCuentaBancaria() {
-	//		return this.lstCuentaBancaria;
-	//	}
-	//
-	//	/**
-	//	 * @param lstCuentaBancaria the lstCuentaBancaria to set
-	//	 */
-	//	public void setLstCuentaBancaria(List<CuentaBancaria> lstCuentaBancaria) {
-	//		this.lstCuentaBancaria = lstCuentaBancaria;
-	//	}
-
-	/**
-	 * saldo de la tarjeta crédito
-	 */
-	@Column(name="SALDO_INICIAL")
 	private Double saldoInicial;
 
 
@@ -266,21 +229,7 @@ public class Tarjeta {
 		this.limiteCredito = limiteCredito;
 	}
 
-	/**
-	 * @return the tipoTarjeta
-	 */
-	public CatalogosValores getTipoTarjeta() {
-		return this.tipoTarjeta;
-	}
-
-	/**
-	 * @param tipoTarjeta the tipoTarjeta to set
-	 */
-	public void setTipoTarjeta(CatalogosValores tipoTarjeta) {
-		this.tipoTarjeta = tipoTarjeta;
-	}
-
-
+	
 	/**
 	 * @return the saldoInicial
 	 */
