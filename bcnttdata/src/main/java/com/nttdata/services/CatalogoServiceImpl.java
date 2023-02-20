@@ -30,7 +30,7 @@ public class CatalogoServiceImpl implements CatalogosService{
 	/**
 	 *
 	 */
-	@Override
+	/* @Override
 	@Transactional
 	public Catalogos modificar(Long id, Catalogos catalogos) throws Exception {
 
@@ -46,7 +46,7 @@ public class CatalogoServiceImpl implements CatalogosService{
 		return catalogos;
 
 
-	}
+	} */
 	/**
 	 *
 	 */
@@ -58,16 +58,16 @@ public class CatalogoServiceImpl implements CatalogosService{
 	/**
 	 *
 	 */
-	@Override
+	/* @Override
 	public Catalogos buscarPorId(Long id) throws Exception {
 
 		return this.dao.findByIdOptional(id).orElse(null);
-	}
+	} */
 
 	/**
 	 *
 	 */
-	@Override
+/* 	@Override
 	public void modificar2(Catalogos catalogos) throws Exception {
 
 
@@ -79,7 +79,7 @@ public class CatalogoServiceImpl implements CatalogosService{
 
 		this.dao.persist(catalogos);
 
-	}
+	} */
 
 
 }

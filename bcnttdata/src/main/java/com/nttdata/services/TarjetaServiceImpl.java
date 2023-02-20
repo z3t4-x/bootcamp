@@ -44,7 +44,7 @@ public class TarjetaServiceImpl implements TarjetaService{
 	/**
 	 *
 	 */
-	@Override
+	/* @Override
 	@Transactional
 	public Tarjeta modificar(Long id,Tarjeta tarjeta) throws Exception {
 
@@ -60,7 +60,7 @@ public class TarjetaServiceImpl implements TarjetaService{
 		return trj;
 
 
-	}
+	} */
 
 
 	/**
@@ -80,16 +80,16 @@ public class TarjetaServiceImpl implements TarjetaService{
 	/**
 	 *
 	 */
-	@Override
+	/* @Override
 	public Tarjeta buscarPorId(Long id) throws Exception {
 
 		return this.dao.findByIdOptional(id).orElse(null);
-	}
+	} */
 
 	/**
 	 *
 	 */
-	@Override
+	/* @Override
 	public void eliminar(Long id, Tarjeta tarjeta) throws Exception {
 
 		Tarjeta tarjet = this.dao.findById(id);
@@ -119,7 +119,7 @@ public class TarjetaServiceImpl implements TarjetaService{
 		this.dao.persist(tarjet);
 
 
-	}
+	} 
 
 	
 	private CuentaBancaria  consultas(Long numTarjeta, Long numCuenta) throws Exception{
@@ -185,8 +185,8 @@ public class TarjetaServiceImpl implements TarjetaService{
 				deposito( numTarjeta,  numCuenta,  deposito);
 			}
 			
-			default -> System.out.println("El tipo de Operación no es correcta.");
+			default -> System.out.println("El tipo de Operaciï¿½n no es correcta.");
 		}
 		return cuenta;
-	}
+	}*/
 }

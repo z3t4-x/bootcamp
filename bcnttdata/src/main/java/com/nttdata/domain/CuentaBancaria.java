@@ -2,22 +2,19 @@ package com.nttdata.domain;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import io.quarkus.mongodb.panache.PanacheMongoEntity;
+import io.quarkus.mongodb.panache.common.MongoEntity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 
+@MongoEntity(collection = "cuenta_bancaria")
 public class CuentaBancaria extends PanacheMongoEntity {
 
 	/**id de cuenta*/
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-		private Long idCuenta;
+	private Long idCuenta;
 	/**
 	 * id de operaciones
 	 */	
@@ -72,20 +69,6 @@ public class CuentaBancaria extends PanacheMongoEntity {
 	}
 
 	/**
-	 * @return the pagoCredito
-	 */
-	public PagoCredito getPagoCredito() {
-		return this.pagoCredito;
-	}
-
-	/**
-	 * @param pagoCredito the pagoCredito to set
-	 */
-	public void setPagoCredito(PagoCredito pagoCredito) {
-		this.pagoCredito = pagoCredito;
-	}
-
-	/**
 	 * @return the fcAltaFila
 	 */
 	public LocalDateTime getFcAltaFila() {
@@ -127,20 +110,6 @@ public class CuentaBancaria extends PanacheMongoEntity {
 		this.fcBajaFila = fcBajaFila;
 	}
 
-	// /**
-	//  * @return the cliente
-	//  */
-	// public Cliente getCliente() {
-	// 	return this.cliente;
-	// }
-
-	// /**
-	//  * @param cliente the cliente to set
-	//  */
-	// public void setCliente(Cliente cliente) {
-	// 	this.cliente = cliente;
-	// }
-
 	/**
 	 * @return the cuentaPrincipal
 	 */
@@ -155,24 +124,5 @@ public class CuentaBancaria extends PanacheMongoEntity {
 		this.cuentaPrincipal = cuentaPrincipal;
 	}
 
-	/**
-	 * @return the tarjeta
-	 */
-	public Tarjeta getTarjeta() {
-		return this.tarjeta;
-	}
-
-	/**
-	 * @param tarjeta the tarjeta to set
-	 */
-	public void setTarjeta(Tarjeta tarjeta) {
-		this.tarjeta = tarjeta;
-	}
-
-
-
-
-
-
-
+	
 }

@@ -47,7 +47,7 @@ public class CuentaBancariaController {
 	 * @return
 	 * @throws Exception
 	 */
-	@GET
+	/* @GET
 	@Path("{id}")
 	public Response buscarId(@PathParam("id") Long id) throws Exception {
 
@@ -59,7 +59,7 @@ public class CuentaBancariaController {
 
 
 
-	}
+	} */
 
 
 	/**
@@ -68,18 +68,18 @@ public class CuentaBancariaController {
 	 * @return
 	 * @throws Exception
 	 */
-	@POST
+/* 	@POST
 	@Transactional
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response registrarCuentaBancaria(CuentaBancaria cuentaBancaria) throws Exception {
 
 		this.service.registrar(cuentaBancaria);
 		return  Response.status(Response.Status.CREATED).build();
-	}
+	} */
 
 
 
-	@PUT
+	/* @PUT
 	@Transactional
 	@Path("/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -113,7 +113,7 @@ public class CuentaBancariaController {
 		return Response.ok(clie).build();
 
 	}
-
+ */
 
 
 }

@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import com.nttdata.domain.CuentaBancaria;
+//import com.nttdata.domain.CuentaBancaria;
 import com.nttdata.domain.Tarjeta;
 import com.nttdata.services.TarjetaService;
-import com.nttdata.utils.OperacionesUtil;
+//import com.nttdata.utils.OperacionesUtil;
 
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -49,7 +49,7 @@ public class TarjetaController {
 	 * @return
 	 * @throws Exception
 	 */
-	@GET
+/* 	@GET
 	@Path("{id}")
 	public Response buscarId(@PathParam("id") Long id) throws Exception {
 
@@ -61,7 +61,7 @@ public class TarjetaController {
 
 
 
-	}
+	} */
 
 
 	/**
@@ -86,7 +86,7 @@ public class TarjetaController {
 	 * @return
 	 * @throws Exception
 	 */
-
+/* 
 	@PUT
 	@Transactional
 	@Path("/{id}")
@@ -103,7 +103,7 @@ public class TarjetaController {
 
 		return Response.ok(tjta).build();
 	}
-
+ */
 
 	/**
 	 * método para eliminar de forma lógica
@@ -111,7 +111,7 @@ public class TarjetaController {
 	 * @return
 	 * @throws Exception
 	 */
-
+/* 
 	@DELETE
 	@Transactional
 	@Path("/{id}")
@@ -128,10 +128,10 @@ public class TarjetaController {
 
 		return Response.ok(trj).build();
 
-	}
+	} */
 
 	
-//String numTarjeta, String numCuenta, Double deposito, String opcionOperacion
+/* //String numTarjeta, String numCuenta, Double deposito, String opcionOperacion
 	@PUT
 	@Transactional
 	@Path("/operaciones")
@@ -141,5 +141,5 @@ public class TarjetaController {
 		
 		CuentaBancaria res =this.service.operaciones(operacion.getIdTarjeta(), operacion.getIdCuenta(), operacion.getDeposito(), operacion.getOpcionOperacion());
 		return Response.ok(res).build();
-	}
+	} */
 }

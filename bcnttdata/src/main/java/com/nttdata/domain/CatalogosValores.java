@@ -1,38 +1,22 @@
 package com.nttdata.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import io.quarkus.mongodb.panache.PanacheMongoEntity;
+import io.quarkus.mongodb.panache.common.MongoEntity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 
-@Entity
-@Table(name="CATALOGOS_VALORES")
-public class CatalogosValores {
+@MongoEntity(collection = "catalogos_valores")
+public class CatalogosValores extends PanacheMongoEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ID_VALOR")
 	private Long idValor;
-
-
-	@Column(name="DS_VALOR")
 	private String dsValor;
-
-	@Column(name="CD_CODIGO")
 	private String cdCodigo;
-
-	@Column(name="IT_MANTENIBLE")
 	private String itMantenible;
 
-	@ManyToOne
-	@JoinColumn(name ="ID_CATALOGO")
-	private Catalogos Catalogos;
-
-
+	
 	public  CatalogosValores () {}
 
 	public  CatalogosValores (Long idValor){
@@ -44,7 +28,7 @@ public class CatalogosValores {
 	@Override
 	public String toString() {
 		return "CatalogosValores [idValor=" + this.idValor + ", dsValor=" + this.dsValor + ", cdCodigo=" + this.cdCodigo
-				+ ", itMantenible=" + this.itMantenible + ", Catalogos=" + this.Catalogos + "]";
+				+ ", itMantenible=" + this.itMantenible + ", Catalogos=" + "]";
 	}
 
 	/**
@@ -103,21 +87,8 @@ public class CatalogosValores {
 		this.itMantenible = itMantenible;
 	}
 
-	/**
-	 * @return the catalogos
-	 */
-	public Catalogos getCatalogos() {
-		return this.Catalogos;
-	}
-
-	/**
-	 * @param catalogos the catalogos to set
-	 */
-	public void setCatalogos(Catalogos catalogos) {
-		this.Catalogos = catalogos;
-	}
-
-
-
-
 }
+
+
+
+

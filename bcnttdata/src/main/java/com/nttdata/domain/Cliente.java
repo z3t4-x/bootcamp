@@ -2,64 +2,60 @@ package com.nttdata.domain;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import io.quarkus.mongodb.panache.PanacheMongoEntity;
+import io.quarkus.mongodb.panache.common.MongoEntity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name="CLIENTE")
-public class Cliente {
+@MongoEntity
+public class Cliente extends PanacheMongoEntity {
 
 	/**id de cliente*/
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ID_CLIENTE")
+	
 	private Long idCliente;
 
 	/**
 	 * dni del cliente
 	 */
-	@Column(name="DNI")
+	
 	private Integer dni;
 
 	/**
 	 * nombre del cliente
 	 */
-	@Column(name="NOMBRE")
+
 	private String nombre;
 	/**
 	 * primer apellido del cliente
 	 */
-	@Column(name="APELLIDO1")
+
 	private String apellido1;
 	/**
 	 * segundo apellido del cliente
 	 */
-	@Column(name="APELLIDO2")
+
 	private String apellido2;
 
 
 	/**
 	 * telefono del cliente
 	 */
-	@Column(name="TELEFONO")
+
 	private Integer telefono;
 	/**
 	 * correo del cliente
 	 */
-	@Column(name="CORREO")
+
 	private String correo;
 	/**
 	 * fecha de nacimiento del cliente
 	 */
-	@Column(name="FC_NACIMIENTO")
+
 	private LocalDate fcNacimiento;
 
 	//******************************
@@ -68,39 +64,36 @@ public class Cliente {
 	/**
 	 * razon social
 	 */
-	@Column(name="RAZON_SOCIAL")
+
 	private String razonSocial;
 
 	/**
 	 *  ruc de persona jurídica
 	 */
-	@Column(name="RUC")
+
 	private String ruc;
 	/**
 	 * direccion de persona jurídica
 	 */
 	private String direccion;
-	@ManyToOne
-	@JoinColumn(name ="ID_TIPO_CLIENTE")
+
 	private CatalogosValores tipoCliente;
 
 
 	/**
 	 * fecha de alta de registro
 	 */
-	@Column(name="FC_ALTA_FILA")
 	private LocalDateTime fcAltaFila;
 	/**
 	 * fecha de modificacion
 	 */
-	@Column(name="FC_MODIF_FILA")
 	private LocalDateTime fcModifFila;
 	/**
 	 * fecha de baja
 	 */
-	@Column(name="FC_BAJA_FILA")
 	private LocalDateTime fcBajaFila;
 
+	private List<CuentaBancaria> lstCuentaBancaria;
 	public Cliente() {
 
 	}
@@ -344,5 +337,16 @@ public class Cliente {
 	public void setRuc(String ruc) {
 		this.ruc = ruc;
 	}
+
+
+	public List<CuentaBancaria> getLstCuentaBancaria() {
+		return lstCuentaBancaria;
+	}
+
+
+	public void setLstCuentaBancaria(List<CuentaBancaria> lstCuentaBancaria) {
+		this.lstCuentaBancaria = lstCuentaBancaria;
+	}
+	
 
 }

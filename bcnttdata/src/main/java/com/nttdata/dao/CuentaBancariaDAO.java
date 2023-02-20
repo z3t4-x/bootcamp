@@ -1,12 +1,8 @@
 package com.nttdata.dao;
 
-import java.util.Map;
-
 import com.nttdata.domain.CuentaBancaria;
 
-import io.quarkus.hibernate.orm.panache.PanacheQuery;
-import io.quarkus.hibernate.orm.panache.PanacheMongoRepository;
-import io.quarkus.panache.common.Sort;
+import io.quarkus.mongodb.panache.PanacheMongoRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped

@@ -39,7 +39,7 @@ public class PagoCreditoServiceImpl implements PagoCreditoService{
 	/**
 	 *
 	 */
-	@Override
+	/* @Override
 	public void modificar(Long id, PagoCredito pagoCredito) throws Exception {
 
 		PagoCredito pgCredito =  this.dao.findById(id);
@@ -58,7 +58,7 @@ public class PagoCreditoServiceImpl implements PagoCreditoService{
 		this.dao.persist(pgCredito);
 
 
-	}
+	} */
 	/**
 	 *
 	 */
@@ -78,7 +78,7 @@ public class PagoCreditoServiceImpl implements PagoCreditoService{
 	/**
 	 *
 	 */
-	@Override
+	/* @Override
 	public PagoCredito buscarPorId(Long id) throws Exception {
 
 		return this.dao.findById(id);
@@ -97,6 +97,6 @@ public class PagoCreditoServiceImpl implements PagoCreditoService{
 		cli.setFcBajaFila(fcBajaActual);
 		this.dao.persist(cli);
 		
-	}
+	} */
 
 }

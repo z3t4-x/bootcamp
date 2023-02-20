@@ -2,9 +2,9 @@ package com.nttdata.dao;
 
 import com.nttdata.domain.CatalogosValores;
 
-import io.quarkus.hibernate.orm.panache.PanacheRepository;
+import io.quarkus.mongodb.panache.PanacheMongoRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 @ApplicationScoped
-public class CatalogosValoresDAO implements PanacheRepository<CatalogosValores>{
+public class CatalogosValoresDAO implements PanacheMongoRepository<CatalogosValores>{
 
 }

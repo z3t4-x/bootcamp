@@ -50,7 +50,7 @@ public class ClienteController {
 	 * @throws Exception
 	 */
 
-	@GET
+/*	@GET
 	@Path("{id}")
 	public Response buscarId(@PathParam("id") Long id) throws Exception {
 
@@ -62,7 +62,7 @@ public class ClienteController {
 
 
 
-	}
+	}*/
 
 
 	/**
@@ -88,7 +88,7 @@ public class ClienteController {
 	 * @throws Exception
 	 */
 
-	@PUT
+	/*@PUT
 	@Transactional
 	@Path("/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -104,7 +104,7 @@ public class ClienteController {
 		this.service.modificar(id, cliente);
 
 		return Response.ok(clie).build();
-	}
+	}*/
 
 	/**
 	 * método para eliminar de forma lógica
@@ -113,7 +113,7 @@ public class ClienteController {
 	 * @throws Exception
 	 */
 
-	@DELETE
+	/*@DELETE
 	@Transactional
 	@Path("/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -129,7 +129,7 @@ public class ClienteController {
 
 		return Response.ok(clie).build();
 
-	}
+	}*/
 
 
 }

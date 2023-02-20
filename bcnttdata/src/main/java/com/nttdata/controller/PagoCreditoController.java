@@ -47,7 +47,7 @@ public class PagoCreditoController {
 	 * @return
 	 * @throws Exception
 	 */
-	@GET
+/* 	@GET
 	@Path("{id}")
 	public Response buscarId(@PathParam("id") Long id) throws Exception {
 
@@ -59,7 +59,7 @@ public class PagoCreditoController {
 
 
 
-	}
+	} */
 
 
 	/**
@@ -79,7 +79,7 @@ public class PagoCreditoController {
 
 
 
-	@PUT
+	/* @PUT
 	@Transactional
 	@Path("/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -113,5 +113,5 @@ public class PagoCreditoController {
 		return Response.ok(clie).build();
 
 	}
-
+ */
 }

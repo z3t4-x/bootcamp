@@ -54,7 +54,7 @@ public class ClienteServiceImpl implements ClienteService{
 	/**
 	 *
 	 */
-	@Override
+/* 	@Override
 	@Transactional
 	public void modificar(Long id, Cliente cliente) throws Exception {
 
@@ -93,7 +93,7 @@ public class ClienteServiceImpl implements ClienteService{
 
 
 
-	}
+	} */
 
 
 
@@ -113,16 +113,16 @@ public class ClienteServiceImpl implements ClienteService{
 	/**
 	 *
 	 */
-	@Override
+/* 	@Override
 	public Cliente buscarPorId(Long id) throws Exception {
 
 		return this.dao.findByIdOptional(id).orElse(null);
-	}
+	} */
 
 	/**
 	 *
 	 */
-	@Override
+	/* @Override
 	public void eliminar(Long id, Cliente cliente) throws Exception {
 
 		Cliente cli = this.dao.findById(id);
@@ -136,7 +136,7 @@ public class ClienteServiceImpl implements ClienteService{
 		cli.setFcBajaFila(fcBajaActual);
 		this.dao.persist(cli);
 
-	}
+	} */
 
 
 }

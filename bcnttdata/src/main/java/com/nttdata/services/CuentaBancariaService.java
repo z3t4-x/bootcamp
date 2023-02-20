@@ -14,7 +14,7 @@ public interface CuentaBancariaService {
 	 *
 	 * @throws Exception
 	 */
-	public void registrar(CuentaBancaria cuentaBancaria) throws Exception;
+	//public void registrar(CuentaBancaria cuentaBancaria) throws Exception;
 
 	/**
 	 * método para modificar
@@ -22,7 +22,7 @@ public interface CuentaBancariaService {
 	 *
 	 * @throws Exception
 	 */
-	public void  modificar(Long id, CuentaBancaria cuentaBancaria) throws Exception;
+	//public void  modificar(Long id, CuentaBancaria cuentaBancaria) throws Exception;
 	/**
 	 * método para listar
 	 * @return
@@ -36,14 +36,14 @@ public interface CuentaBancariaService {
 	 * @return
 	 * @throws Exception
 	 */
-	CuentaBancaria buscarPorId(Long id) throws Exception;
+	//CuentaBancaria buscarPorId(Long id) throws Exception;
 
 	/**
 	 * método para eliminar de forma lógica
 	 * @param id
 	 * @throws Exception
 	 */
-	void eliminar(Long id) throws Exception;
+	//void eliminar(Long id) throws Exception;
 
 
 }

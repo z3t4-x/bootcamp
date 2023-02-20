@@ -18,7 +18,7 @@ public interface CatalogosService {
 	 * @throws Exception
 	 */
 
-	public Catalogos  modificar(Long id, Catalogos catalogos) throws Exception;
+//	public Catalogos  modificar(Long id, Catalogos catalogos) throws Exception;
 	/**
 	 * método para listar
 	 * @return
@@ -32,10 +32,10 @@ public interface CatalogosService {
 	 * @return
 	 * @throws Exception
 	 */
-	Catalogos buscarPorId(Long id) throws Exception;
+//	Catalogos buscarPorId(Long id) throws Exception;
 
 
-	public void  modificar2(Catalogos catalogos) throws Exception;
+//	public void  modificar2(Catalogos catalogos) throws Exception;
 
 
 

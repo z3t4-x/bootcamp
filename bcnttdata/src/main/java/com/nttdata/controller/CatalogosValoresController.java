@@ -48,7 +48,7 @@ public class CatalogosValoresController {
 	 * @return
 	 * @throws Exception
 	 */
-	@GET
+/*	@GET
 	@Path("{id}")
 	public Response buscarId(@PathParam("id") Long id) throws Exception {
 
@@ -56,7 +56,7 @@ public class CatalogosValoresController {
 
 		return catalogosValores.map(c -> Response.ok(c).build()).orElse(Response.status(Response.Status.NOT_FOUND).build());
 
-	}
+	}*/
 
 	/**
 	 * registrar CatalogosValores
@@ -80,7 +80,7 @@ public class CatalogosValoresController {
 	 * @return
 	 * @throws Exception
 	 */
-	@PUT
+/*	@PUT
 	@Transactional
 	@Path("/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -96,6 +96,6 @@ public class CatalogosValoresController {
 		this.service.modificar(id, cat);
 
 		return Response.ok(cat).build();
-	}
+	}*/
 
 }

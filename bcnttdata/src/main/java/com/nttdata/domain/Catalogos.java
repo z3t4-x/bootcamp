@@ -1,12 +1,11 @@
 package com.nttdata.domain;
 
+import java.util.List;
+
 import io.quarkus.mongodb.panache.PanacheMongoEntity;
 import io.quarkus.mongodb.panache.common.MongoEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Table;
 
-@MongoEntity
-@Table()
+@MongoEntity(collection = "catalogo")
 public class Catalogos extends PanacheMongoEntity {
 
 
@@ -16,21 +15,19 @@ public class Catalogos extends PanacheMongoEntity {
 	/**
 	 * nombre de catalogo
 	 */
-	@Column(name="DS_NOMBRE")
 	private String dsNombre;
 
 	/**
 	 * descripcion del catálogo
 	 */
-	@Column(name="TL_DESCRIPCION")
 	private String tlDescripcion;
 
 	/**
 	 * atributo que describe si el catalogo es mantenible  o no
 	 */
-	@Column(name="IT_MANTENIBLE")
 	private String itMantenible;
 
+	private List<CatalogosValores> lstCatalogosValores;
 
 	/**
 	 * @return the idCatalogo
@@ -100,6 +97,16 @@ public class Catalogos extends PanacheMongoEntity {
 	public String toString() {
 		return "Catalogos [idCatalogo=" + this.idCatalogo + ", dsNombre=" + this.dsNombre + ", tlDescripcion=" + this.tlDescripcion
 				+ ", itMantenible=" + this.itMantenible + "]";
+	}
+
+
+	public List<CatalogosValores> getLstCatalogosValores() {
+		return lstCatalogosValores;
+	}
+
+
+	public void setLstCatalogosValores(List<CatalogosValores> lstCatalogosValores) {
+		this.lstCatalogosValores = lstCatalogosValores;
 	}
 
 

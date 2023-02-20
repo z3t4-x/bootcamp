@@ -2,15 +2,15 @@ package com.nttdata.domain;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import io.quarkus.mongodb.panache.PanacheMongoEntity;
+import io.quarkus.mongodb.panache.common.MongoEntity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
-
+@MongoEntity(collection = "pago_credito")
 public class PagoCredito extends PanacheMongoEntity{
 
 
@@ -18,7 +18,7 @@ public class PagoCredito extends PanacheMongoEntity{
 	 * id de tipo de cliente
 	 */
 	@Id
-	@GeneratedMongoValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idPagoCredito;
 
 	/**
@@ -166,13 +166,21 @@ public class PagoCredito extends PanacheMongoEntity{
 		this.fcBajaFila = fcBajaFila;
 	}
 
+	public List<CuentaBancaria> getLstCuentaBancaria() {
+		return lstCuentaBancaria;
+	}
+
+	public void setLstCuentaBancaria(List<CuentaBancaria> lstCuentaBancaria) {
+		this.lstCuentaBancaria = lstCuentaBancaria;
+	}
+
 	@Override
 	public String toString() {
 		return "PagoCredito [idPagoCredito=" + this.idPagoCredito + ", fcInicio=" + this.fcInicio + ", nmCuotas=" + this.nmCuotas
 				+ ", fcPagoMensual=" + this.fcPagoMensual + ", saldoInicial=" + this.saldoInicial + ", saldoActual=" + this.saldoActual
 				+ "]";
 	}
-
+	
 
 
 

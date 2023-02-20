@@ -19,7 +19,7 @@ public interface TarjetaService {
 	 * @throws Exception
 	 */
 
-	public Tarjeta  modificar(Long id, Tarjeta tarjeta) throws Exception;
+	//public Tarjeta  modificar(Long id, Tarjeta tarjeta) throws Exception;
 	/**
 	 * método para listar
 	 * @return
@@ -33,7 +33,7 @@ public interface TarjetaService {
 	 * @return
 	 * @throws Exception
 	 */
-	Tarjeta buscarPorId(Long id) throws Exception;
+//	Tarjeta buscarPorId(Long id) throws Exception;
 
 
 	/**
@@ -42,7 +42,7 @@ public interface TarjetaService {
 	 *
 	 * @throws Exception
 	 */
-	public void  eliminar(Long id, Tarjeta tarjeta) throws Exception;
+//	public void  eliminar(Long id, Tarjeta tarjeta) throws Exception;
 	
 	
 	/**
@@ -51,6 +51,6 @@ public interface TarjetaService {
 	 *
 	 * @throws Exception
 	 */
-	public CuentaBancaria  operaciones(Long numTarjeta, Long numCuenta, Double deposito, String opcionOperacion) throws Exception;
+//	public CuentaBancaria  operaciones(Long numTarjeta, Long numCuenta, Double deposito, String opcionOperacion) throws Exception;
 
 }

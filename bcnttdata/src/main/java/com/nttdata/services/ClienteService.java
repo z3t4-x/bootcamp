@@ -18,7 +18,7 @@ public interface ClienteService {
 	 * @throws Exception
 	 */
 
-	public void  modificar(Long id, Cliente cliente) throws Exception;
+	//public void  modificar(Long id, Cliente cliente) throws Exception;
 	/**
 	 * método para listar clientes
 	 * @return
@@ -32,7 +32,7 @@ public interface ClienteService {
 	 * @return
 	 * @throws Exception
 	 */
-	Cliente buscarPorId(Long id) throws Exception;
+	//Cliente buscarPorId(Long id) throws Exception;
 
 	/**
 	 * eliminar de forma lógica
@@ -40,7 +40,7 @@ public interface ClienteService {
 	 *
 	 * @throws Exception
 	 */
-	public void  eliminar(Long id, Cliente cliente) throws Exception;
+	//public void  eliminar(Long id, Cliente cliente) throws Exception;
 
 
 

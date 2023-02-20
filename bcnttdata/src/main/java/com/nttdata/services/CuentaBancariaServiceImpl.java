@@ -36,7 +36,7 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 	/**
 	 *
 	 */
-	@Override
+/* 	@Override
 	@Transactional
 	public void registrar(CuentaBancaria cuentaBancaria) throws Exception {
 
@@ -57,11 +57,11 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 
 		this.dao.persist(cuentaBancaria);
 
-	}
+	} */
 	/**
 	 *
 	 */
-	@Override
+	/* @Override
 	public void modificar(Long id, CuentaBancaria cuentaBancaria) throws Exception {
 
 		CuentaBancaria ctBancaria = this.dao.findById(id);
@@ -87,7 +87,7 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 		this.dao.persist(ctBancaria);
 
 
-	}
+	} */
 	/**
 	 *
 	 */
@@ -105,7 +105,7 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 	/**
 	 *
 	 */
-	@Override
+	/* @Override
 	public void eliminar(Long id) throws Exception {
 
 		CuentaBancaria cli = this.dao.findById(id);
@@ -119,22 +119,22 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 		cli.setFcBajaFila(fcBajaActual);
 		this.dao.persist(cli);
 
-	}
+	} */
 	/**
 	 *
 	 */
-	@Override
+/* 	@Override
 	public CuentaBancaria buscarPorId(Long id) throws Exception {
 
 		return this.dao.findById(id);
-	}
+	} */
 
 
 	/**
 	 * método para  retiro
 	 */
 
-	private Boolean retiraMonto( CuentaBancaria cuentaBancaria) {
+/* 	private Boolean retiraMonto( CuentaBancaria cuentaBancaria) {
 
 		Tarjeta tarjeta = this.tarjetaDAO.findById(cuentaBancaria.getTarjeta().getIdTarjeta());
 
@@ -177,14 +177,14 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 		}
 		return puedeRetirar;
 
-	}
+	} */
 
 
 	/**
 	 * método si existe cuenta bancaria principal
 	 */
 
-	private Boolean existeCuentaPrincipal(CuentaBancaria cuentaBancaria) {
+	/* private Boolean existeCuentaPrincipal(CuentaBancaria cuentaBancaria) {
 
 		Boolean existe = Boolean.FALSE;
 
@@ -212,7 +212,7 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 
 		return existe;
 
-	}
+	} */
 
 
 

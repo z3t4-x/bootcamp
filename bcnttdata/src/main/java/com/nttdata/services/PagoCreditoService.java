@@ -18,7 +18,7 @@ public interface PagoCreditoService {
 	 * @throws Exception
 	 */
 
-	public void  modificar(Long id,PagoCredito pagoCredito) throws Exception;
+	//public void  modificar(Long id,PagoCredito pagoCredito) throws Exception;
 	/**
 	 * método para listar los pagos de credito
 	 * @return
@@ -32,13 +32,13 @@ public interface PagoCreditoService {
 	 * @return
 	 * @throws Exception
 	 */
-	PagoCredito buscarPorId(Long id) throws Exception;
+	//PagoCredito buscarPorId(Long id) throws Exception;
 
 	/**
 	 * método para eliminar de forma lógica
 	 * @param id
 	 * @throws Exception
 	 */
-	void eliminar(Long id) throws Exception;
+	//void eliminar(Long id) throws Exception;
 
 }
