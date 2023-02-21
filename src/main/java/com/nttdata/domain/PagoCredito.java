@@ -53,16 +53,21 @@ public class PagoCredito {
 	@Column(name="SALDO_ACTUAL")
 	private Double saldoActual;
 
-	@Column(name="FC_ALTA_FILA")
+	@Column(name="CD_USU_ALTA",  nullable = false)
+	private String cdUsuAlta;
+
+	@Column(name="CD_USU_MODIF")
+	private String cdUsuModif;
+
+	@Column(name="CD_USU_BAJA")
+	private String cdUsuBaja;
+
+	@Column(name="FC_ALTA_FILA", nullable = false)
 	private LocalDateTime fcAltaFila;
-	/**
-	 * fecha de modificacion
-	 */
+
 	@Column(name="FC_MODIF_FILA")
 	private LocalDateTime fcModifFila;
-	/**
-	 * fecha de baja
-	 */
+
 	@Column(name="FC_BAJA_FILA")
 	private LocalDateTime fcBajaFila;
 
@@ -149,9 +154,9 @@ public class PagoCredito {
 	public void setSaldoActual(Double saldoActual) {
 		this.saldoActual = saldoActual;
 	}
-	
+
 	public LocalDateTime getFcAltaFila() {
-		return fcAltaFila;
+		return this.fcAltaFila;
 	}
 
 	public void setFcAltaFila(LocalDateTime fcAltaFila) {
@@ -159,7 +164,7 @@ public class PagoCredito {
 	}
 
 	public LocalDateTime getFcModifFila() {
-		return fcModifFila;
+		return this.fcModifFila;
 	}
 
 	public void setFcModifFila(LocalDateTime fcModifFila) {
@@ -167,7 +172,7 @@ public class PagoCredito {
 	}
 
 	public LocalDateTime getFcBajaFila() {
-		return fcBajaFila;
+		return this.fcBajaFila;
 	}
 
 	public void setFcBajaFila(LocalDateTime fcBajaFila) {
@@ -179,6 +184,48 @@ public class PagoCredito {
 		return "PagoCredito [idPagoCredito=" + this.idPagoCredito + ", fcInicio=" + this.fcInicio + ", nmCuotas=" + this.nmCuotas
 				+ ", fcPagoMensual=" + this.fcPagoMensual + ", saldoInicial=" + this.saldoInicial + ", saldoActual=" + this.saldoActual
 				+ "]";
+	}
+
+	/**
+	 * @return the cdUsuAlta
+	 */
+	public String getCdUsuAlta() {
+		return this.cdUsuAlta;
+	}
+
+	/**
+	 * @param cdUsuAlta the cdUsuAlta to set
+	 */
+	public void setCdUsuAlta(String cdUsuAlta) {
+		this.cdUsuAlta = cdUsuAlta;
+	}
+
+	/**
+	 * @return the cdUsuModif
+	 */
+	public String getCdUsuModif() {
+		return this.cdUsuModif;
+	}
+
+	/**
+	 * @param cdUsuModif the cdUsuModif to set
+	 */
+	public void setCdUsuModif(String cdUsuModif) {
+		this.cdUsuModif = cdUsuModif;
+	}
+
+	/**
+	 * @return the cdUsuBaja
+	 */
+	public String getCdUsuBaja() {
+		return this.cdUsuBaja;
+	}
+
+	/**
+	 * @param cdUsuBaja the cdUsuBaja to set
+	 */
+	public void setCdUsuBaja(String cdUsuBaja) {
+		this.cdUsuBaja = cdUsuBaja;
 	}
 
 

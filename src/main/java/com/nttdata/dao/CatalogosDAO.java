@@ -7,4 +7,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class CatalogosDAO implements PanacheRepository<Catalogos>{
 
+
+
+
 }

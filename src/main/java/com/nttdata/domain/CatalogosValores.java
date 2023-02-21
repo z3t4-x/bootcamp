@@ -1,5 +1,7 @@
 package com.nttdata.domain;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,6 +33,26 @@ public class CatalogosValores {
 	@ManyToOne
 	@JoinColumn(name ="ID_CATALOGO")
 	private Catalogos Catalogos;
+
+	@Column(name="CD_USU_ALTA", nullable = false)
+	private String cdUsuAlta;
+
+	@Column(name="CD_USU_MODIF")
+	private String cdUsuModif;
+
+	@Column(name="CD_USU_BAJA")
+	private String cdUsuBaja;
+
+	@Column(name="FC_ALTA_FILA", nullable = false)
+	private LocalDateTime fcAltaFila;
+
+	@Column(name="FC_MODIF_FILA")
+	private LocalDateTime fcModifFila;
+
+	@Column(name="FC_BAJA_FILA")
+	private LocalDateTime fcBajaFila;
+
+
 
 
 	public  CatalogosValores () {}
@@ -115,6 +137,90 @@ public class CatalogosValores {
 	 */
 	public void setCatalogos(Catalogos catalogos) {
 		this.Catalogos = catalogos;
+	}
+
+	/**
+	 * @return the cdUsuAlta
+	 */
+	public String getCdUsuAlta() {
+		return this.cdUsuAlta;
+	}
+
+	/**
+	 * @param cdUsuAlta the cdUsuAlta to set
+	 */
+	public void setCdUsuAlta(String cdUsuAlta) {
+		this.cdUsuAlta = cdUsuAlta;
+	}
+
+	/**
+	 * @return the cdUsuModif
+	 */
+	public String getCdUsuModif() {
+		return this.cdUsuModif;
+	}
+
+	/**
+	 * @param cdUsuModif the cdUsuModif to set
+	 */
+	public void setCdUsuModif(String cdUsuModif) {
+		this.cdUsuModif = cdUsuModif;
+	}
+
+	/**
+	 * @return the cdUsuBaja
+	 */
+	public String getCdUsuBaja() {
+		return this.cdUsuBaja;
+	}
+
+	/**
+	 * @param cdUsuBaja the cdUsuBaja to set
+	 */
+	public void setCdUsuBaja(String cdUsuBaja) {
+		this.cdUsuBaja = cdUsuBaja;
+	}
+
+	/**
+	 * @return the fcAltaFila
+	 */
+	public LocalDateTime getFcAltaFila() {
+		return this.fcAltaFila;
+	}
+
+	/**
+	 * @param fcAltaFila the fcAltaFila to set
+	 */
+	public void setFcAltaFila(LocalDateTime fcAltaFila) {
+		this.fcAltaFila = fcAltaFila;
+	}
+
+	/**
+	 * @return the fcModifFila
+	 */
+	public LocalDateTime getFcModifFila() {
+		return this.fcModifFila;
+	}
+
+	/**
+	 * @param fcModifFila the fcModifFila to set
+	 */
+	public void setFcModifFila(LocalDateTime fcModifFila) {
+		this.fcModifFila = fcModifFila;
+	}
+
+	/**
+	 * @return the fcBajaFila
+	 */
+	public LocalDateTime getFcBajaFila() {
+		return this.fcBajaFila;
+	}
+
+	/**
+	 * @param fcBajaFila the fcBajaFila to set
+	 */
+	public void setFcBajaFila(LocalDateTime fcBajaFila) {
+		this.fcBajaFila = fcBajaFila;
 	}
 
 

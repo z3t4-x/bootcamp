@@ -73,8 +73,8 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 		LocalDateTime fcActual = LocalDateTime.now();
 
 
-		if(Boolean.TRUE.equals(this.existeCuentaPrincipal(cuentaBancaria))
-				&& Boolean.TRUE.equals(this.retiraMonto(cuentaBancaria))) {
+		if(Boolean.FALSE.equals(this.existeCuentaPrincipal(cuentaBancaria))
+				&& Boolean.FALSE.equals(this.retiraMonto(cuentaBancaria))) {
 
 			this.dao.persist(ctBancaria);
 		}
@@ -205,6 +205,7 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 			stream().filter(c -> c.getCliente().getIdCliente().equals(cliente.getIdCliente()) &&
 					c.getTarjeta().getIdTarjeta().equals(tarjeta.getIdTarjeta())  &&
 					c.getIdCuenta().equals(ctaBancaria.getIdCuenta())&&
+					tarjeta.getTipoTarjeta().getCdCodigo().equals(Constantes.TipoTarjeta.TARJETA_DEBITO)&&
 					c.getCuentaPrincipal().equals(Constantes.Afimarcion.AFIRMACION_S)).toList();
 
 			existe = Boolean.TRUE;
