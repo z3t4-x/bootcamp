@@ -1,5 +1,6 @@
 package com.nttdata.services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -24,6 +25,10 @@ public class CatalogosValoresServiceImpl implements CatalogosValoresService{
 	@Transactional
 	public void registrar(CatalogosValores catalogosValores) throws Exception {
 
+		LocalDateTime fcHoy =  LocalDateTime.now();
+		String cdUsuAlta = "Admin";
+		catalogosValores.setCdUsuAlta(cdUsuAlta);
+		catalogosValores.setFcAltaFila(fcHoy);
 
 		this.dao.persist(catalogosValores);
 	}

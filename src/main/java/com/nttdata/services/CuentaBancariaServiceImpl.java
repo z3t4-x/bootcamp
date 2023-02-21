@@ -73,8 +73,12 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 		LocalDateTime fcActual = LocalDateTime.now();
 
 
-		if(Boolean.FALSE.equals(this.existeCuentaPrincipal(cuentaBancaria))
-				&& Boolean.FALSE.equals(this.retiraMonto(cuentaBancaria))) {
+		if(Boolean.TRUE.equals(this.retiraMonto(cuentaBancaria))) {
+
+			LocalDateTime fcHoy =  LocalDateTime.now();
+			String cdUsuAlta = "Admin";
+			cuentaBancaria.setCdUsuAlta(cdUsuAlta);
+			cuentaBancaria.setFcAltaFila(fcHoy);
 
 			this.dao.persist(ctBancaria);
 		}
@@ -155,8 +159,10 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 			}
 
 			// valida que sea cuenta principal
-			if(Constantes.Afimarcion.AFIRMACION_S.equals(cuentaBancaria.getCuentaPrincipal()) &&
-					tarjeta.getTipoTarjeta().getCdCodigo().equals(Constantes.TipoTarjeta.TARJETA_DEBITO)) {
+			//			if(Constantes.Afimarcion.AFIRMACION_S.equals(cuentaBancaria.getCuentaPrincipal()) &&
+			//					tarjeta.getTipoTarjeta().getCdCodigo().equals(Constantes.TipoTarjeta.TARJETA_DEBITO)) {
+
+			if(Boolean.TRUE.equals(this.existeCuentaPrincipal(cuentaBancaria))) {
 
 
 				if(tarjeta.getSaldoActual() > tarjeta.getSaldoDisponible()) {
@@ -181,7 +187,8 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 
 
 	/**
-	 * método si existe cuenta bancaria principal
+	 * método que valida si existe una cuenta bancaria principal
+	 * asociado al cliente y tarjeta
 	 */
 
 	private Boolean existeCuentaPrincipal(CuentaBancaria cuentaBancaria) {
@@ -201,14 +208,16 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService{
 
 		if(!lstCuentaBancaria.isEmpty()) {
 
-			lstCuentaBancaria.
-			stream().filter(c -> c.getCliente().getIdCliente().equals(cliente.getIdCliente()) &&
-					c.getTarjeta().getIdTarjeta().equals(tarjeta.getIdTarjeta())  &&
-					c.getIdCuenta().equals(ctaBancaria.getIdCuenta())&&
-					tarjeta.getTipoTarjeta().getCdCodigo().equals(Constantes.TipoTarjeta.TARJETA_DEBITO)&&
-					c.getCuentaPrincipal().equals(Constantes.Afimarcion.AFIRMACION_S)).toList();
+			lstCuentaBancaria =lstCuentaBancaria.
+					stream().filter(c -> c.getCliente().getIdCliente().equals(cliente.getIdCliente()) &&
+							c.getTarjeta().getIdTarjeta().equals(tarjeta.getIdTarjeta())  &&
+							c.getIdCuenta().equals(ctaBancaria.getIdCuenta())&&
+							tarjeta.getTipoTarjeta().getCdCodigo().equals(Constantes.TipoTarjeta.TARJETA_DEBITO)&&
+							c.getCuentaPrincipal().equals(Constantes.Afimarcion.AFIRMACION_S) ).toList();
 
-			existe = Boolean.TRUE;
+			if(!lstCuentaBancaria.isEmpty()) {
+				existe = Boolean.TRUE;
+			}
 		}
 
 		return existe;
